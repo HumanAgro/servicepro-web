@@ -49,7 +49,7 @@ export const ClientRoute = () => {
       const options: WorkSersTasksListParams = {
         orgId: organizationID.toString(),
         offset: ticketsPage * PAGINATION_DEFAULT_LIMIT,
-        customer: [clientID.toString()],
+        organization: [clientID.toString()],
         limit: PAGINATION_DEFAULT_LIMIT,
       }
 
@@ -60,6 +60,18 @@ export const ClientRoute = () => {
       return data ?? []
     },
     refetchOnWindowFocus: false,
+  })
+
+  const vehiclesQuery = useQuery({
+    queryKey: [QueryKey.ClientVehicles, clientID, organizationID],
+    queryFn: async () => {
+      const { data } = await api.workSersVehiclesList({
+        orgId: organizationID.toString(),
+        organization: [clientID.toString()],
+      })
+
+      return data
+    },
   })
 
   const info = useMemo((): LabelValue[] => {
@@ -77,12 +89,8 @@ export const ClientRoute = () => {
         value: data?.requisites.physical_address?.value ?? EMPTY_VALUE_DASH,
       },
       {
-        label: 'Юридический адрес',
-        value: data?.requisites.legal_address?.value ?? EMPTY_VALUE_DASH,
-      },
-      {
-        label: 'Адрес для корреспонденции',
-        value: data?.requisites.postal_address?.value ?? EMPTY_VALUE_DASH,
+        label: 'Контакты',
+        value: EMPTY_VALUE_DASH,
       },
     ]
   }, [data])
@@ -154,9 +162,9 @@ export const ClientRoute = () => {
             sx={{ paddingX: 0, width: '100%' }}
           >
             <VehiclesTable
-              data={[]}
+              data={vehiclesQuery.data ?? []}
+              isSuccess={vehiclesQuery.isSuccess}
               sx={{ margin: 0 }}
-              isSuccess={false}
             />
           </TabPanel>
           <TabPanel
@@ -166,9 +174,9 @@ export const ClientRoute = () => {
             <TicketsTable
               page={ticketsPage}
               count={ticketsCount}
-              isSuccess={ticketsQuery.isSuccess}
               data={ticketsQuery.data ?? []}
               sx={{ margin: 0 }}
+              isSuccess
               onPageChange={setTicketsPage}
             />
           </TabPanel>
