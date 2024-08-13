@@ -23,6 +23,7 @@ export enum QueryKey {
   VehicleRuntime = 'vehicle-runtime',
   VehicleRecommendations = 'vehicle-recommendations',
   VehicleTickets = 'vehicle-tickets',
+  RelatedOrgs = 'related-orgs',
 }
 
 export enum SearchParamsKey {

@@ -26,6 +26,15 @@ export const VehiclesTable = ({ data, isSuccess, sx }: VehiclesTableProps) => {
             <TableCell
               size={'small'}
             >
+              Клиент
+              <TableSortLabel
+                direction={'desc'}
+                active
+              />
+            </TableCell>
+            <TableCell
+              size={'small'}
+            >
               Бренд
               <TableSortLabel
                 direction={'desc'}
