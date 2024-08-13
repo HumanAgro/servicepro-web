@@ -177,7 +177,7 @@ export const TicketDrawer = () => {
             <>
               {data?.service_center.requisites.full_name && (
                 <TicketDrawerHeaderChip
-                  label={data.service_center.requisites.full_name}
+                  label={data.organization.name}
                 />
               )}
               <TicketDrawerHeaderChip

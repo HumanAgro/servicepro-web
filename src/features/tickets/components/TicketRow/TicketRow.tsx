@@ -11,7 +11,7 @@ import { ticketStatusesEngineerEditable } from '@features/tickets/data'
 import { Tooltip } from '@features/ui/components/Tooltip'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { GpsFixedOutlined, ManageAccounts } from '@mui/icons-material'
-import { TableCell, TableRow } from '@mui/material'
+import { Box, TableCell, TableRow } from '@mui/material'
 import { format } from 'date-fns'
 import { SerWorkTaskVerbose } from '~/api/servicepro.generated'
 
@@ -57,7 +57,16 @@ export const TicketRow = ({ ticket, onSelect }: TicketRowProps) => {
           {ticket.id}
         </TableCell>
         <TableCell>
-          {ticket.customer?.profile ? getEngineerLabel(ticket.customer?.profile) : EMPTY_VALUE_DASH}
+          <Box>
+            {ticket.organization?.name ?? EMPTY_VALUE_DASH}
+          </Box>
+          <Box
+            sx={{
+              color: (theme) => theme.palette.grey['600'],
+            }}
+          >
+            {ticket.customer?.profile ? getEngineerLabel(ticket.customer?.profile) : EMPTY_VALUE_DASH}
+          </Box>
         </TableCell>
         <TableCell>
           {requisites?.legal_address?.region?.local_name ?? requisites?.physical_address?.region?.local_name ?? requisites?.postal_address?.region?.local_name ?? EMPTY_VALUE_DASH}
