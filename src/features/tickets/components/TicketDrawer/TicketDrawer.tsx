@@ -262,7 +262,7 @@ export const TicketDrawer = () => {
                       report={resultQuery.data.executor_report ?? null}
                       recommendation={{
                         ...(resultQuery.data.recommendations?.[0] ?? {}),
-                        title: resultQuery.data.recommendations?.[0].executor_title,
+                        title: resultQuery.data.recommendations?.[0]?.executor_title,
                       }}
                     />
                   )}

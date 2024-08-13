@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { EMPTY_VALUE_DASH } from '@constants/index'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { DialogTicketAssign } from '@features/shared/components/DialogTicketAssign'
 import { TableCellTickets } from '@features/shared/components/TableCellTickets'
@@ -38,9 +39,11 @@ export const EngineerRow = ({ data }: EngineerRow) => {
         />
       </TableCell>
       <TableCell>
-        <TicketChipStatus
-          status={selectedTask?.status}
-        />
+        {selectedTask ? (
+          <TicketChipStatus
+            status={selectedTask.status}
+          />
+        ) : EMPTY_VALUE_DASH}
       </TableCell>
       <DialogTicketAssign
         open={open}
