@@ -7,9 +7,18 @@ interface TicketDrawerHeaderChipProps {
   sx?: SxProps
   disabled?: boolean
   onChange?: () => void
+  onClick?: () => void
 }
 
-export const TicketDrawerHeaderChip = ({ label, color, disabled, sx, onChange }: TicketDrawerHeaderChipProps) => {
+export const TicketDrawerHeaderChip = ({ label, color, disabled, sx, onChange, onClick }: TicketDrawerHeaderChipProps) => {
+
+  const handleClick = () => {
+    if (!disabled) {
+      onChange?.()
+      onClick?.()
+    }
+  }
+
   return (
     <Chip
       label={label}
@@ -19,7 +28,7 @@ export const TicketDrawerHeaderChip = ({ label, color, disabled, sx, onChange }:
       sx={sx}
       deleteIcon={onChange ? (disabled ? <EditOff /> : <Edit />) : undefined}
       onDelete={onChange ? (disabled ? () => undefined : onChange) : undefined}
-      onClick={onChange && !disabled ? onChange : undefined}
+      onClick={(onChange || onClick) ? handleClick : undefined}
     />
   )
 }

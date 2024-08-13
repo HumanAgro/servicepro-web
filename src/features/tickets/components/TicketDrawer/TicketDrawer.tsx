@@ -149,6 +149,14 @@ export const TicketDrawer = () => {
     }
   }, [newStatus, message, files, notify, api.workSersTasksAttachmentsCreate, organizationID, ticketID, chatApi, authorization])
 
+  const handleGoOrganization = () => {
+    navigate(`/${organizationID}/clients/${data?.organization.id}`)
+  }
+
+  const handleGoVehicle = () => {
+    navigate(`/${organizationID}/vehicles/${data?.vehicle.id}`)
+  }
+
   const handleClose = () => {
     setShowStatusField(false)
     setFiles([])
@@ -178,6 +186,8 @@ export const TicketDrawer = () => {
               {data?.service_center.requisites.full_name && (
                 <TicketDrawerHeaderChip
                   label={data.organization.name}
+                  color={'info'}
+                  onClick={handleGoOrganization}
                 />
               )}
               <TicketDrawerHeaderChip
@@ -188,6 +198,8 @@ export const TicketDrawer = () => {
               />
               <TicketDrawerHeaderChip
                 label={data?.vehicle?.sn || data?.vehicle?.gos_number || 'Серийный номер техники не задан'}
+                color={'info'}
+                onClick={handleGoVehicle}
               />
               <TicketDrawerHeaderChip
                 label={data?.vehicle?.manufacture_date ?? 'Год выпуска не указан'}
