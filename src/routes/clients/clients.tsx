@@ -59,9 +59,6 @@ export const ClientsRoute = () => {
               <TableRow>
                 <TableCell
                   size={'small'}
-                />
-                <TableCell
-                  size={'small'}
                 >
                   Клиент
                   <TableSortLabel
@@ -106,10 +103,6 @@ export const ClientsRoute = () => {
                     active
                   />
                 </TableCell>
-                {/*<TableCell*/}
-                {/*  size={'small'}*/}
-                {/*  sx={{ width: TABLE_CONTEXT_BUTTON_CELL_WIDTH, paddingRight: TABLE_CELL_DENSE_PADDING }}*/}
-                {/*/>*/}
               </TableRow>
             </TableHead>
             <TableBody>

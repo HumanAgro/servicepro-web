@@ -20,11 +20,6 @@ export const EngineerRow = ({ data }: EngineerRow) => {
     <TableRow
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
-      <TableCell
-        size={'small'}
-      >
-        {data.id}
-      </TableCell>
       <TableCell>
         <EngineerAvatar
           profile={data.profile}
@@ -34,6 +29,7 @@ export const EngineerRow = ({ data }: EngineerRow) => {
         <TableCellTickets
           selectedTaskID={selectedTaskID ?? null}
           tasks={data.tasks}
+          width={'400px'}
           onClickAssign={() => setOpen(true)}
           onChangeSelectedTaskID={setSelectedTaskID}
         />

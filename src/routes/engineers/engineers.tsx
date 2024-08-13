@@ -23,9 +23,6 @@ export const EngineersRoute = () => {
             <TableRow>
               <TableCell
                 size={'small'}
-              />
-              <TableCell
-                size={'small'}
               >
                 Инженеры СО
                 <TableSortLabel

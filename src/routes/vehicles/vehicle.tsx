@@ -67,7 +67,7 @@ export const VehicleRoute = () => {
       },
       {
         label: 'Серийный номер',
-        value: data?.sn ? `SN ${data?.sn}` : EMPTY_VALUE_DASH,
+        value: data?.sn ? data.sn : EMPTY_VALUE_DASH,
       },
       {
         label: 'Год выпуска',

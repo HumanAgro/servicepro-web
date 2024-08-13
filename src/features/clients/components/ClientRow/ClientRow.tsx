@@ -52,7 +52,7 @@ export const ClientRow = ({ data }: ClientRowProps) => {
     } finally {
       await queryClient.invalidateQueries({ queryKey: [QueryKey.Clients] })
     }
-  }, [selectedTaskID, organizationID])
+  }, [selectedTaskID, employment?.profile?.id, notify, api, organizationID, selectedTask?.title])
 
   const handleRowClick = useCallback(async () => {
     navigate(`/${organizationID}/clients/${data.id}`)
@@ -67,11 +67,6 @@ export const ClientRow = ({ data }: ClientRowProps) => {
       hover
       onClick={handleRowClick}
     >
-      <TableCell
-        size={'small'}
-      >
-        {data.id}
-      </TableCell>
       <TableCell>
         <Typography
           variant={'body2'}

@@ -31,9 +31,6 @@ export const TicketsTable = ({ page, count, isSuccess, data, sx, onPageChange, o
       >
         <TableHead>
           <TableRow>
-            <TableCell
-              size={'small'}
-            />
             <TableCellHeadFilter>
               Клиент
             </TableCellHeadFilter>

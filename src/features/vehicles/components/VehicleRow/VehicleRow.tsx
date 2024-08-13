@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ButtonIcon } from '@components/ButtonIcon'
-import { FieldLabelValue } from '@components/FieldLabelValue'
 import { Tooltip } from '@components/Tooltip'
 import { EMPTY_VALUE_DASH } from '@constants/index'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
@@ -13,7 +12,7 @@ import { useOpenTicketDrawer } from '@features/tickets/hooks/useOpenTicketDrawer
 import { useApi } from '@hooks/useApi'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
-import { Info, NoteAdd } from '@mui/icons-material'
+import { NoteAdd } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { Box, TableCell, TableRow, Typography } from '@mui/material'
 import { queryClient } from '~/api'
@@ -86,11 +85,6 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
         hover
         onClick={handleRowClick}
       >
-        <TableCell
-          size={'small'}
-        >
-          {vehicle.id}
-        </TableCell>
         <TableCell>
           <Box
             sx={{
@@ -100,40 +94,13 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
             }}
           >
             {organization?.name ?? EMPTY_VALUE_DASH}
-            {organization && (
-              <Tooltip
-                content={(
-                  <Box
-                    sx={{
-                      width: '250px',
-                    }}
-                  >
-                    <FieldLabelValue
-                      label={'Регион'}
-                      value={organization.requisites?.legal_address?.region?.local_name ?? organization.requisites?.physical_address?.region?.local_name ?? organization.requisites?.postal_address?.region?.local_name ?? EMPTY_VALUE_DASH}
-                      variant={'body2'}
-                      column
-                    />
-                    <FieldLabelValue
-                      label={'Район'}
-                      value={organization.requisites?.legal_address?.value ?? organization.requisites?.physical_address?.value ?? organization.requisites?.postal_address?.value ?? EMPTY_VALUE_DASH}
-                      variant={'body2'}
-                      column
-                    />
-                  </Box>
-                )}
-                target={(
-                  <Info
-                    sx={{
-                      display: 'block',
-                      fontSize: '18px',
-                      color: (theme) => theme.palette.grey['500'],
-                    }}
-                  />
-                )}
-              />
-            )}
           </Box>
+        </TableCell>
+        <TableCell>
+          {organization?.requisites.physical_address?.region?.local_name || EMPTY_VALUE_DASH}
+        </TableCell>
+        <TableCell>
+          {organization?.requisites?.legal_address?.value ?? organization?.requisites?.physical_address?.value ?? organization?.requisites?.postal_address?.value ?? EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
           {vehicle.model.brand.name || EMPTY_VALUE_DASH}
@@ -149,7 +116,7 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
           />
         </TableCell>
         <TableCell>
-          {vehicle.sn ? `SN ${vehicle.sn}` : EMPTY_VALUE_DASH}
+          {vehicle.sn ? vehicle.sn : EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
           {vehicle.summary?.runtime_sum ? `${vehicle.summary.runtime_sum}мч` : EMPTY_VALUE_DASH}
@@ -160,6 +127,7 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
           <TableCellTickets
             selectedTaskID={selectedTaskID}
             tasks={vehicle.tasks ?? []}
+            width={'250px'}
             onClickAssign={!vehicle.tasks?.length ? undefined : () => setEngineerAssignOpen(true)}
             onChangeSelectedTaskID={setSelectedTaskID}
           />

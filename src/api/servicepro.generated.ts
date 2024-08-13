@@ -50,6 +50,8 @@ export interface Address {
   id?: number | null;
   /** @maxLength 250 */
   value?: string;
+  /** @maxLength 60 */
+  district?: string;
   readonly region: Region | null;
   /** @default "user" */
   source?: SourceEnum;
@@ -186,6 +188,7 @@ export interface Device {
    * * `fcm_web` - fcm_web
    * * `hpk_app` - hpk_app
    * * `apns_app` - apns_app
+   * * `telegram` - telegram
    */
   type: TypeEnum;
   /** @format date-time */
@@ -209,6 +212,26 @@ export interface EmployeeDetailed {
    */
   role: RoleEnum;
   readonly profile: Profile;
+  /** @format date-time */
+  readonly created_at: string;
+  /** @format date-time */
+  readonly updated_at: string;
+  /** Active */
+  is_active?: boolean;
+  readonly organization: number;
+}
+
+export interface EmployeeDetailedWithRating {
+  readonly id: number;
+  /**
+   * * `server` - server
+   * * `client` - client
+   * * `engineer` - engineer
+   * * `coordinator` - coordinator
+   */
+  role: RoleEnum;
+  readonly profile: Profile;
+  readonly rating: EmployeeRating;
   /** @format date-time */
   readonly created_at: string;
   /** @format date-time */
@@ -255,6 +278,13 @@ export interface EmployeeGeolocation {
   real_date: string;
   /** @format date-time */
   readonly created_at: string;
+}
+
+export interface EmployeeRating {
+  /** @format double */
+  value?: number;
+  /** @format date-time */
+  readonly updated_at: string;
 }
 
 /**
@@ -305,6 +335,7 @@ export interface MyEmployment {
    */
   role: RoleEnum;
   readonly profile: Profile;
+  readonly rating: EmployeeRating;
   readonly organization: Organization;
   /** @format date-time */
   readonly created_at: string;
@@ -742,7 +773,7 @@ export type PaginatedControlPointList = ControlPoint[];
 
 export type PaginatedDeviceList = Device[];
 
-export type PaginatedEmployeeDetailedList = EmployeeDetailed[];
+export type PaginatedEmployeeDetailedWithRatingList = EmployeeDetailedWithRating[];
 
 export type PaginatedNotificationList = Notification[];
 
@@ -753,6 +784,8 @@ export type PaginatedOrganizationInviteList = OrganizationInvite[];
 export type PaginatedOrganizationList = Organization[];
 
 export type PaginatedOrganizationPublicList = OrganizationPublic[];
+
+export type PaginatedReportList = Report[];
 
 export type PaginatedSerVehicleList = SerVehicle[];
 
@@ -820,7 +853,7 @@ export interface PatchedControlPoint {
   readonly organization?: number;
 }
 
-export interface PatchedEmployeeDetailed {
+export interface PatchedEmployeeDetailedWithRating {
   readonly id?: number;
   /**
    * * `server` - server
@@ -830,6 +863,7 @@ export interface PatchedEmployeeDetailed {
    */
   role?: RoleEnum;
   readonly profile?: Profile;
+  readonly rating?: EmployeeRating;
   /** @format date-time */
   readonly created_at?: string;
   /** @format date-time */
@@ -1296,6 +1330,25 @@ export interface Region {
   local_name?: string;
 }
 
+export interface Report {
+  readonly id: number;
+  /** @format date */
+  period_start?: string | null;
+  /** @format date */
+  period_stop?: string | null;
+  /** @format date-time */
+  readonly created_at: string;
+  /** @format date-time */
+  readonly updated_at: string;
+  /**
+   * Файл
+   * @format uri
+   */
+  readonly file: string;
+  readonly service_center: number;
+  readonly initiator: number | null;
+}
+
 /**
  * * `server` - server
  * * `client` - client
@@ -1410,8 +1463,8 @@ export interface SerWorkTaskEdit {
   longitude?: number;
   /** @format double */
   latitude?: number;
-  organization: number;
-  vehicle?: number | null;
+  readonly organization: number;
+  vehicle: number | null;
   /** Parent task */
   parent?: number | null;
 }
@@ -1579,6 +1632,7 @@ export interface TotalVehicleSummaryPair {
  * * `fcm_web` - fcm_web
  * * `hpk_app` - hpk_app
  * * `apns_app` - apns_app
+ * * `telegram` - telegram
  */
 export enum TypeEnum {
   None = "none",
@@ -1589,6 +1643,7 @@ export enum TypeEnum {
   FcmWeb = "fcm_web",
   HpkApp = "hpk_app",
   ApnsApp = "apns_app",
+  Telegram = "telegram",
 }
 
 export interface UserAcceptInvite {
@@ -2747,6 +2802,23 @@ export type AccountMeDeleteAccountCreateData = UserDeleteAccount;
 
 export type AccountMeDeleteAccountConfirmCreateData = UserDeleteAccountConfirm;
 
+export interface ExportSersReportsListParams {
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** @pattern ^\d+$ */
+  orgId: string;
+}
+
+export type ExportSersReportsListData = PaginatedReportList;
+
+export type ExportSersReportsCreateData = Report;
+
+export type ExportSersReportsRetrieveData = Report;
+
+export type ExportSersReportsDestroyData = any;
+
 export type OrgMyRetrieveData = MyUserAll;
 
 export type OrgMyEmploymentsRetrieveData = MyUserEmployment;
@@ -2842,13 +2914,13 @@ export interface OrgOrgsEmployeesListParams {
   orgId: string;
 }
 
-export type OrgOrgsEmployeesListData = PaginatedEmployeeDetailedList;
+export type OrgOrgsEmployeesListData = PaginatedEmployeeDetailedWithRatingList;
 
-export type OrgOrgsEmployeesCreateData = EmployeeDetailed;
+export type OrgOrgsEmployeesCreateData = EmployeeDetailedWithRating;
 
-export type OrgOrgsEmployeesRetrieveData = EmployeeDetailed;
+export type OrgOrgsEmployeesRetrieveData = EmployeeDetailedWithRating;
 
-export type OrgOrgsEmployeesPartialUpdateData = EmployeeDetailed;
+export type OrgOrgsEmployeesPartialUpdateData = EmployeeDetailedWithRating;
 
 export type OrgOrgsEmployeesDestroyData = any;
 
@@ -2938,9 +3010,9 @@ export interface OrgOrgsRelatedSersEmployeesListParams {
   relatedId: string;
 }
 
-export type OrgOrgsRelatedSersEmployeesListData = PaginatedEmployeeDetailedList;
+export type OrgOrgsRelatedSersEmployeesListData = PaginatedEmployeeDetailedWithRatingList;
 
-export type OrgOrgsRelatedSersEmployeesRetrieveData = EmployeeDetailed;
+export type OrgOrgsRelatedSersEmployeesRetrieveData = EmployeeDetailedWithRating;
 
 export type OrgOrgsRequisitesPartialUpdateData = OrganizationRequisites;
 
@@ -3033,9 +3105,9 @@ export interface OrgSersRelatedOrgsEmployeesListParams {
   relatedId: string;
 }
 
-export type OrgSersRelatedOrgsEmployeesListData = PaginatedEmployeeDetailedList;
+export type OrgSersRelatedOrgsEmployeesListData = PaginatedEmployeeDetailedWithRatingList;
 
-export type OrgSersRelatedOrgsEmployeesRetrieveData = EmployeeDetailed;
+export type OrgSersRelatedOrgsEmployeesRetrieveData = EmployeeDetailedWithRating;
 
 export interface VehicleOrgsBrandsListParams {
   equipment?: string;
@@ -4861,6 +4933,73 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     /**
      * No description
      *
+     * @tags export
+     * @name ExportSersReportsList
+     * @request GET:/api/v1/export/sers/{org_id}/reports/
+     * @secure
+     */
+    exportSersReportsList: ({ orgId, ...query }: ExportSersReportsListParams, params: RequestParams = {}) =>
+      this.request<ExportSersReportsListData, any>({
+        path: `/api/v1/export/sers/${orgId}/reports/`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags export
+     * @name ExportSersReportsCreate
+     * @request POST:/api/v1/export/sers/{org_id}/reports/
+     * @secure
+     */
+    exportSersReportsCreate: (orgId: string, data: Report, params: RequestParams = {}) =>
+      this.request<ExportSersReportsCreateData, any>({
+        path: `/api/v1/export/sers/${orgId}/reports/`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags export
+     * @name ExportSersReportsRetrieve
+     * @request GET:/api/v1/export/sers/{org_id}/reports/{id}/
+     * @secure
+     */
+    exportSersReportsRetrieve: (id: number, orgId: string, params: RequestParams = {}) =>
+      this.request<ExportSersReportsRetrieveData, any>({
+        path: `/api/v1/export/sers/${orgId}/reports/${id}/`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags export
+     * @name ExportSersReportsDestroy
+     * @request DELETE:/api/v1/export/sers/{org_id}/reports/{id}/
+     * @secure
+     */
+    exportSersReportsDestroy: (id: number, orgId: string, params: RequestParams = {}) =>
+      this.request<ExportSersReportsDestroyData, any>({
+        path: `/api/v1/export/sers/${orgId}/reports/${id}/`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
      * @tags org
      * @name OrgMyRetrieve
      * @request GET:/api/v1/org/my/
@@ -5084,7 +5223,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/api/v1/org/orgs/{org_id}/employees/
      * @secure
      */
-    orgOrgsEmployeesCreate: (orgId: string, data: EmployeeDetailed, params: RequestParams = {}) =>
+    orgOrgsEmployeesCreate: (orgId: string, data: EmployeeDetailedWithRating, params: RequestParams = {}) =>
       this.request<OrgOrgsEmployeesCreateData, any>({
         path: `/api/v1/org/orgs/${orgId}/employees/`,
         method: "POST",
@@ -5121,7 +5260,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     orgOrgsEmployeesPartialUpdate: (
       id: number,
       orgId: string,
-      data: PatchedEmployeeDetailed,
+      data: PatchedEmployeeDetailedWithRating,
       params: RequestParams = {},
     ) =>
       this.request<OrgOrgsEmployeesPartialUpdateData, any>({

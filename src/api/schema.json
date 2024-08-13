@@ -851,6 +851,206 @@
                 }
             }
         },
+        "/api/v1/export/sers/{org_id}/reports/": {
+            "get": {
+                "operationId": "export_sers_reports_list",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "Number of results to return per page.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "required": false,
+                        "in": "query",
+                        "description": "The initial index from which to return the results.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "org_id",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "export"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "cookieAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaginatedReportList"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "operationId": "export_sers_reports_create",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "org_id",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "export"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Report"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Report"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Report"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "cookieAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Report"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/export/sers/{org_id}/reports/{id}/": {
+            "get": {
+                "operationId": "export_sers_reports_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this report.",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "org_id",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "export"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "cookieAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Report"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "export_sers_reports_destroy",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this report.",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "org_id",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "export"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "cookieAuth": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
         "/api/v1/org/my/": {
             "get": {
                 "operationId": "org_my_retrieve",
@@ -1507,7 +1707,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedEmployeeDetailedList"
+                                    "$ref": "#/components/schemas/PaginatedEmployeeDetailedWithRatingList"
                                 }
                             }
                         },
@@ -1535,17 +1735,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EmployeeDetailed"
+                                "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/EmployeeDetailed"
+                                "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/EmployeeDetailed"
+                                "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                             }
                         }
                     },
@@ -1564,7 +1764,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EmployeeDetailed"
+                                    "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                                 }
                             }
                         },
@@ -1612,7 +1812,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EmployeeDetailed"
+                                    "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                                 }
                             }
                         },
@@ -1649,17 +1849,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedEmployeeDetailed"
+                                "$ref": "#/components/schemas/PatchedEmployeeDetailedWithRating"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedEmployeeDetailed"
+                                "$ref": "#/components/schemas/PatchedEmployeeDetailedWithRating"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedEmployeeDetailed"
+                                "$ref": "#/components/schemas/PatchedEmployeeDetailedWithRating"
                             }
                         }
                     }
@@ -1677,7 +1877,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EmployeeDetailed"
+                                    "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                                 }
                             }
                         },
@@ -2348,7 +2548,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedEmployeeDetailedList"
+                                    "$ref": "#/components/schemas/PaginatedEmployeeDetailedWithRatingList"
                                 }
                             }
                         },
@@ -2405,7 +2605,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EmployeeDetailed"
+                                    "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                                 }
                             }
                         },
@@ -3212,7 +3412,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedEmployeeDetailedList"
+                                    "$ref": "#/components/schemas/PaginatedEmployeeDetailedWithRatingList"
                                 }
                             }
                         },
@@ -3269,7 +3469,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EmployeeDetailed"
+                                    "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                                 }
                             }
                         },
@@ -13125,6 +13325,10 @@
                         "type": "string",
                         "maxLength": 250
                     },
+                    "district": {
+                        "type": "string",
+                        "maxLength": 60
+                    },
                     "region": {
                         "oneOf": [
                             {
@@ -13571,6 +13775,61 @@
                     "updated_at"
                 ]
             },
+            "EmployeeDetailedWithRating": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "role": {
+                        "$ref": "#/components/schemas/RoleEnum"
+                    },
+                    "profile": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Profile"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "rating": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/EmployeeRating"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "title": "Active"
+                    },
+                    "organization": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "created_at",
+                    "id",
+                    "organization",
+                    "profile",
+                    "rating",
+                    "role",
+                    "updated_at"
+                ]
+            },
             "EmployeeGeo": {
                 "type": "object",
                 "properties": {
@@ -13657,6 +13916,23 @@
                     "uuid"
                 ]
             },
+            "EmployeeRating": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "updated_at"
+                ]
+            },
             "ExecutorLevelEnum": {
                 "enum": [
                     "info",
@@ -13709,6 +13985,14 @@
                         ],
                         "readOnly": true
                     },
+                    "rating": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/EmployeeRating"
+                            }
+                        ],
+                        "readOnly": true
+                    },
                     "organization": {
                         "allOf": [
                             {
@@ -13741,6 +14025,7 @@
                     "id",
                     "organization",
                     "profile",
+                    "rating",
                     "role",
                     "updated_at"
                 ]
@@ -14995,10 +15280,10 @@
                     "$ref": "#/components/schemas/Device"
                 }
             },
-            "PaginatedEmployeeDetailedList": {
+            "PaginatedEmployeeDetailedWithRatingList": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/EmployeeDetailed"
+                    "$ref": "#/components/schemas/EmployeeDetailedWithRating"
                 }
             },
             "PaginatedNotificationList": {
@@ -15029,6 +15314,12 @@
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/OrganizationPublic"
+                }
+            },
+            "PaginatedReportList": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Report"
                 }
             },
             "PaginatedSerVehicleList": {
@@ -15224,7 +15515,7 @@
                     }
                 }
             },
-            "PatchedEmployeeDetailed": {
+            "PatchedEmployeeDetailedWithRating": {
                 "type": "object",
                 "properties": {
                     "id": {
@@ -15238,6 +15529,14 @@
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/Profile"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "rating": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/EmployeeRating"
                             }
                         ],
                         "readOnly": true
@@ -16395,6 +16694,66 @@
                     }
                 }
             },
+            "Report": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "period_start": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date",
+                        "writeOnly": true
+                    },
+                    "period_stop": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date",
+                        "writeOnly": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "file": {
+                        "type": "string",
+                        "format": "uri",
+                        "readOnly": true,
+                        "title": "Файл"
+                    },
+                    "service_center": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "initiator": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "created_at",
+                    "file",
+                    "id",
+                    "initiator",
+                    "service_center",
+                    "updated_at"
+                ]
+            },
             "RoleEnum": {
                 "enum": [
                     "server",
@@ -16687,7 +17046,8 @@
                         "format": "double"
                     },
                     "organization": {
-                        "type": "integer"
+                        "type": "integer",
+                        "readOnly": true
                     },
                     "vehicle": {
                         "type": [
@@ -16705,7 +17065,8 @@
                 },
                 "required": [
                     "approval",
-                    "organization"
+                    "organization",
+                    "vehicle"
                 ]
             },
             "SerWorkTaskVerbose": {
@@ -17039,10 +17400,11 @@
                     "fcm_app",
                     "fcm_web",
                     "hpk_app",
-                    "apns_app"
+                    "apns_app",
+                    "telegram"
                 ],
                 "type": "string",
-                "description": "* `none` - none\n* `db` - db\n* `websocket` - websocket\n* `email_app` - email_app\n* `fcm_app` - fcm_app\n* `fcm_web` - fcm_web\n* `hpk_app` - hpk_app\n* `apns_app` - apns_app"
+                "description": "* `none` - none\n* `db` - db\n* `websocket` - websocket\n* `email_app` - email_app\n* `fcm_app` - fcm_app\n* `fcm_web` - fcm_web\n* `hpk_app` - hpk_app\n* `apns_app` - apns_app\n* `telegram` - telegram"
             },
             "UserAcceptInvite": {
                 "type": "object",

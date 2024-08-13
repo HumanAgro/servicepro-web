@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ButtonIcon } from '@components/ButtonIcon'
 import { TableCellActions } from '@components/TableCellActions'
-import { DATE_FORMAT_TIME_AHEAD, EMPTY_VALUE_DASH } from '@constants/index'
+import { DATE_FORMAT_DEFAULT, DATE_FORMAT_TIME, EMPTY_VALUE_DASH } from '@constants/index'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { getEngineerLabel } from '@features/engineers/helpers'
 import { DialogEngineerAssign } from '@features/shared/components/DialogEngineerAssign'
@@ -54,9 +54,6 @@ export const TicketRow = ({ ticket, onSelect }: TicketRowProps) => {
         onClick={() => handleClick()}
       >
         <TableCell>
-          {ticket.id}
-        </TableCell>
-        <TableCell>
           <Box>
             {ticket.organization?.name ?? EMPTY_VALUE_DASH}
           </Box>
@@ -81,10 +78,28 @@ export const TicketRow = ({ ticket, onSelect }: TicketRowProps) => {
           {vehicle?.model.name || EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
-          {ticket.approval.want_start_date ? format(new Date(ticket.approval.want_start_date), DATE_FORMAT_TIME_AHEAD) : EMPTY_VALUE_DASH}
+          {ticket.approval.want_start_date ? (
+            <>
+              <Box>
+                {format(new Date(ticket.approval.want_start_date), DATE_FORMAT_TIME)}
+              </Box>
+              <Box>
+                {format(new Date(ticket.approval.want_start_date), DATE_FORMAT_DEFAULT)}
+              </Box>
+            </>
+          ) : EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
-          {ticket.approval.plan_start_date ? format(new Date(ticket.approval.plan_start_date), DATE_FORMAT_TIME_AHEAD) : EMPTY_VALUE_DASH}
+          {ticket.approval.plan_start_date ? (
+            <Box sx={{ fontWeight: '500' }}>
+              <Box>
+                {format(new Date(ticket.approval.plan_start_date), DATE_FORMAT_TIME)}
+              </Box>
+              <Box>
+                {format(new Date(ticket.approval.plan_start_date), DATE_FORMAT_DEFAULT)}
+              </Box>
+            </Box>
+          ) : EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
           <TicketChipStatus status={ticket.status} />

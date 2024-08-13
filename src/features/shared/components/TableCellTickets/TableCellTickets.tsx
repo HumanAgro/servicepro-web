@@ -15,12 +15,13 @@ export interface TableCellTicketsProps {
   tasks: (WorkTaskShort | SerWorkTaskVerbose | WorkTaskShortWithExecutor)[]
   disableView?: boolean
   showClient?: boolean
+  width?: string
   onChangeSelectedTaskID: (id: number) => void
   onClickAssign?: () => void
   onClickAccept?: () => void
 }
 
-export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, showClient = false, onChangeSelectedTaskID, onClickAssign, onClickAccept }: TableCellTicketsProps) => {
+export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, showClient = false, width = '290px', onChangeSelectedTaskID, onClickAssign, onClickAccept }: TableCellTicketsProps) => {
   const { openTicketDrawer } = useOpenTicketDrawer()
   const { employment } = useProfile()
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
@@ -63,7 +64,7 @@ export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, s
                 gridTemplateColumns: '1fr max-content max-content',
                 gap: '6px',
                 alignItems: 'center',
-                width: '290px',
+                width,
                 height: '32px',
                 padding: '0 10px',
                 background: 'rgba(0, 0, 0, 0.06)',
@@ -152,7 +153,7 @@ export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, s
                 gridTemplateColumns: '1fr max-content max-content',
                 gap: '6px',
                 alignItems: 'center',
-                width: '290px',
+                width,
                 height: '32px',
                 padding: '0 10px',
                 background: 'rgba(0, 0, 0, 0.06)',
@@ -195,15 +196,6 @@ export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, s
         )}
         {onClickAssign && (
           <>
-            <Box
-              sx={{
-                height: '24px',
-                width: '1px',
-                alignSelf: 'center',
-                margin: '0 4px',
-                background: (theme) => theme.palette.grey['300'],
-              }}
-            />
             <Tooltip
               content={'Назначить заявку'}
               target={(
