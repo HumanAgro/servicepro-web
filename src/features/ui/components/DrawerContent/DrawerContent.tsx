@@ -1,9 +1,9 @@
 import { PropsWithChildren, ReactNode } from 'react'
 import { DrawerHeader } from '@components/DrawerHeader'
-import { TicketDrawerFooter } from '@features/tickets/components/TicketDrawerFooter'
+import { DrawerFooter } from '@features/ui/components/DrawerFooter'
 import { Box, SxProps } from '@mui/material'
 
-interface TicketDrawerContentProps {
+interface DrawerContentProps {
   title: string
   sx?: SxProps
   innerSx?: SxProps
@@ -11,7 +11,7 @@ interface TicketDrawerContentProps {
   onClose: () => void
 }
 
-export const DrawerContent = ({ title, sx, innerSx, renderFooter, onClose, children }: PropsWithChildren<TicketDrawerContentProps>) => {
+export const DrawerContent = ({ title, sx, innerSx, renderFooter, onClose, children }: PropsWithChildren<DrawerContentProps>) => {
   return (
     <Box
       sx={{
@@ -38,9 +38,9 @@ export const DrawerContent = ({ title, sx, innerSx, renderFooter, onClose, child
         {children}
       </Box>
       {renderFooter && (
-        <TicketDrawerFooter>
+        <DrawerFooter>
           {renderFooter}
-        </TicketDrawerFooter>
+        </DrawerFooter>
       )}
     </Box>
   )
