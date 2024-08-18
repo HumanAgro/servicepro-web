@@ -60,3 +60,7 @@ export const getGeoInfoBounds = (geo: WorkTaskGeo): LatLngTuple[] => {
     ...(taskLocation ? [taskLocation] : []),
   ]
 }
+
+export const getEmployeeRating = (rating: number | null | undefined) => {
+  return rating ? rating.toPrecision(2) : null
+}

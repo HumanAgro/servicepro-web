@@ -2,20 +2,22 @@ import { useState } from 'react'
 import { ButtonIcon } from '@components/ButtonIcon'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { DialogEngineerAssign } from '@features/shared/components/DialogEngineerAssign'
+import { useEmployeeRating } from '@features/shared/hooks/useEmployeeRating'
 import { ticketStatusesEngineerEditable } from '@features/tickets/data'
 import { ManageAccounts } from '@mui/icons-material'
 import { Box, Typography } from '@mui/material'
-import { Profile, StatusEnum } from '~/api/servicepro.generated'
+import { EmployeeDetailed, StatusEnum } from '~/api/servicepro.generated'
 
 interface TicketDrawerEngineerSectionProps {
   ticketID: number
   status: StatusEnum
-  engineer: Profile | null
-  coordinator: Profile | null
+  engineer: EmployeeDetailed | null
+  coordinator: EmployeeDetailed | null
 }
 
 export const TicketDrawerParticipantsSection = ({ engineer, status, ticketID }: TicketDrawerEngineerSectionProps) => {
   const [open, setOpen] = useState(false)
+  const { rating } = useEmployeeRating(engineer?.id)
 
   const handleOpenDialog = () => {
     setOpen(true)
@@ -58,7 +60,8 @@ export const TicketDrawerParticipantsSection = ({ engineer, status, ticketID }: 
           }}
         >
           <EngineerAvatar
-            profile={engineer ?? null}
+            profile={engineer?.profile ?? null}
+            rating={rating}
           />
           {ticketStatusesEngineerEditable.some((value) => value === status) && (
             <ButtonIcon

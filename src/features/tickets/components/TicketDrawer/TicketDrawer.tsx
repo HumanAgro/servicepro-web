@@ -313,8 +313,8 @@ export const TicketDrawer = () => {
               <TicketDrawerParticipantsSection
                 ticketID={ticketID}
                 status={data?.status ?? StatusEnum.Processing}
-                engineer={data?.executor?.profile ?? null}
-                coordinator={data?.coordinator?.profile ?? null}
+                engineer={data?.executor ?? null}
+                coordinator={data?.coordinator ?? null}
               />
             )}
             {isSuccess && (
