@@ -19,7 +19,6 @@ import {
   useTicketDrawerQueryStatuses,
   useTicketDrawerWebSocket,
 } from '@features/tickets/components/TicketDrawer/hooks'
-import { TicketDrawerFooter } from '@features/tickets/components/TicketDrawerFooter'
 import { TicketDrawerFormConditions } from '@features/tickets/components/TicketDrawerFormConditions'
 import { TicketDrawerFormRecommendation } from '@features/tickets/components/TicketDrawerFormRecommendation'
 import { TicketDrawerFormResult } from '@features/tickets/components/TicketDrawerFormResult'
@@ -342,7 +341,13 @@ export const TicketDrawer = () => {
             )}
           </TicketDrawerFormsContainer>
         </Box>
-        <TicketDrawerFooter>
+        <Box
+          sx={{
+            position: 'relative',
+            boxShadow: 2,
+            zIndex: 10,
+          }}
+        >
           <Dropzone
             files={files}
             touched={false}
@@ -469,7 +474,7 @@ export const TicketDrawer = () => {
             )}
             onChange={handleAddFiles}
           />
-        </TicketDrawerFooter>
+        </Box>
       </ContentWrapper>
     </Drawer>
   )
