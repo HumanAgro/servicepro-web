@@ -5,18 +5,21 @@ import { DATE_FORMAT_TIME_AHEAD, EMPTY_VALUE_DASH } from '@constants/index'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { QueryKey } from '@features/shared/data'
 import { VehicleDrawerRuntimeAdd } from '@features/vehicles/components/VehicleDrawerRuntimeAdd'
+import { RuntimeUnitEnumLabel } from '@features/vehicles/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { Add } from '@mui/icons-material'
 import { Box, Button, Skeleton, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
+import { RuntimeUnitEnum, WorkVehicle } from '~/api/servicepro.generated'
 
 interface VehicleTabRuntimeProps {
   vehicleID: number
+  vehicle: WorkVehicle | null
 }
 
-export const VehicleTabRuntime = ({ vehicleID }: VehicleTabRuntimeProps) => {
+export const VehicleTabRuntime = ({ vehicleID, vehicle }: VehicleTabRuntimeProps) => {
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
 
@@ -121,7 +124,7 @@ export const VehicleTabRuntime = ({ vehicleID }: VehicleTabRuntimeProps) => {
                           {record.id}
                         </TableCell>
                         <TableCell>
-                          {record.value || EMPTY_VALUE_DASH}
+                          {record.value ? `${record.value} ${RuntimeUnitEnumLabel[vehicle?.model.equipment.runtime_unit ?? RuntimeUnitEnum.No]}` : EMPTY_VALUE_DASH}
                         </TableCell>
                         <TableCell>
                           {record.created_at ? format(new Date(record.created_at), DATE_FORMAT_TIME_AHEAD) : EMPTY_VALUE_DASH}

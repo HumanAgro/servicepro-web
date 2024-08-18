@@ -1,5 +1,5 @@
 import { ChipProps } from '@mui/material'
-import { LevelEnum, SolutionEnum } from '~/api/servicepro.generated'
+import { LevelEnum, RuntimeUnitEnum, SolutionEnum } from '~/api/servicepro.generated'
 
 export const LevelEnumLabel: Record<LevelEnum, string> = {
   [LevelEnum.Critical]: 'Критический',
@@ -22,3 +22,18 @@ export const SolutionEnumColor: Record<SolutionEnum, ChipProps['color']> = {
   [SolutionEnum.Complete]: 'success',
   [SolutionEnum.No]: 'warning',
 }
+
+export const RuntimeUnitEnumLabel: Record<RuntimeUnitEnum, string> = {
+  [RuntimeUnitEnum.No]: '',
+  [RuntimeUnitEnum.He]: 'га',
+  [RuntimeUnitEnum.Km]: 'км',
+  [RuntimeUnitEnum.Mh]: 'мч',
+}
+
+export const RuntimeUnitEnumLabelVerbose: Record<RuntimeUnitEnum, string> = {
+  [RuntimeUnitEnum.No]: '',
+  [RuntimeUnitEnum.He]: 'Гектары',
+  [RuntimeUnitEnum.Km]: 'Километры',
+  [RuntimeUnitEnum.Mh]: 'Моточасы',
+}
+

@@ -7,7 +7,7 @@ import { ClientRow } from '@features/clients/components/ClientRow'
 import { QueryKey } from '@features/shared/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
-import { Box, CircularProgress, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
+import { Box, CircularProgress, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 export const ClientsRoute = () => {
@@ -61,47 +61,26 @@ export const ClientsRoute = () => {
                   size={'small'}
                 >
                   Клиент
-                  <TableSortLabel
-                    direction={'desc'}
-                    active
-                  />
                 </TableCell>
                 <TableCell
                   size={'small'}
                 >
                   Регион
-                  <TableSortLabel
-                    direction={'desc'}
-                    active
-                  />
                 </TableCell>
                 <TableCell
                   size={'small'}
                 >
                   Район
-                  <TableSortLabel
-                    direction={'desc'}
-                    active
-                  />
                 </TableCell>
                 <TableCell
                   size={'small'}
                 >
                   Заявки
-                  <TableSortLabel
-                    direction={'desc'}
-                    active
-                  />
                 </TableCell>
                 <TableCell
-                  align={'center'}
                   size={'small'}
                 >
                   Рекомендации
-                  <TableSortLabel
-                    direction={'desc'}
-                    active
-                  />
                 </TableCell>
               </TableRow>
             </TableHead>
