@@ -100,7 +100,7 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
           {organization?.requisites.physical_address?.region?.local_name || EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
-          {organization?.requisites?.legal_address?.value ?? organization?.requisites?.physical_address?.value ?? organization?.requisites?.postal_address?.value ?? EMPTY_VALUE_DASH}
+          {organization?.requisites?.physical_address?.district || EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
           {vehicle.model.brand.name || EMPTY_VALUE_DASH}
