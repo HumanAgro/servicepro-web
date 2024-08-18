@@ -3196,11 +3196,17 @@ export type VehicleOrgsModelsPartialUpdateData = VehicleModelDetailed;
 export type VehicleOrgsModelsDestroyData = any;
 
 export interface VehicleOrgsVehiclesListParams {
-  gos_number?: string;
+  /** Multiple values may be separated by commas. */
+  brand?: string[];
+  brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  equipment?: string[];
+  equipment_name?: string;
   /** Number of results to return per page. */
   limit?: number;
   /** Multiple values may be separated by commas. */
   model?: string[];
+  model_name?: string;
   name?: string;
   /**
    * Ordering
@@ -3211,15 +3217,62 @@ export interface VehicleOrgsVehiclesListParams {
    * * `-updated_at` - Updated at (descending)
    * * `order` - Order
    * * `-order` - Order (descending)
+   * * `task_status` - Task status
+   * * `-task_status` - Task status (descending)
+   * * `task_executor_name` - Task executor name
+   * * `-task_executor_name` - Task executor name (descending)
+   * * `runtime` - Runtime
+   * * `-runtime` - Runtime (descending)
+   * * `model_name` - Model name
+   * * `-model_name` - Model name (descending)
+   * * `brand_name` - Brand name
+   * * `-brand_name` - Brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
    */
-  o?: ("-created_at" | "-order" | "-updated_at" | "created_at" | "order" | "updated_at")[];
+  o?: (
+    | "-brand_name"
+    | "-created_at"
+    | "-model_name"
+    | "-order"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-runtime"
+    | "-task_executor_name"
+    | "-task_status"
+    | "-updated_at"
+    | "brand_name"
+    | "created_at"
+    | "model_name"
+    | "order"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "runtime"
+    | "task_executor_name"
+    | "task_status"
+    | "updated_at"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
+  runtime_gte?: number;
+  runtime_lte?: number;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   sn?: string;
+  task_executor_name?: string;
+  task_title?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -3372,11 +3425,17 @@ export type VehicleOrgsVehiclesRuntimeListData = PaginatedVehicleRuntimeList;
 export type VehicleOrgsVehiclesRuntimeRetrieveData = VehicleRuntime;
 
 export interface VehicleSersRelatedOrgsVehiclesListParams {
-  gos_number?: string;
+  /** Multiple values may be separated by commas. */
+  brand?: string[];
+  brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  equipment?: string[];
+  equipment_name?: string;
   /** Number of results to return per page. */
   limit?: number;
   /** Multiple values may be separated by commas. */
   model?: string[];
+  model_name?: string;
   name?: string;
   /**
    * Ordering
@@ -3387,15 +3446,62 @@ export interface VehicleSersRelatedOrgsVehiclesListParams {
    * * `-updated_at` - Updated at (descending)
    * * `order` - Order
    * * `-order` - Order (descending)
+   * * `task_status` - Task status
+   * * `-task_status` - Task status (descending)
+   * * `task_executor_name` - Task executor name
+   * * `-task_executor_name` - Task executor name (descending)
+   * * `runtime` - Runtime
+   * * `-runtime` - Runtime (descending)
+   * * `model_name` - Model name
+   * * `-model_name` - Model name (descending)
+   * * `brand_name` - Brand name
+   * * `-brand_name` - Brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
    */
-  o?: ("-created_at" | "-order" | "-updated_at" | "created_at" | "order" | "updated_at")[];
+  o?: (
+    | "-brand_name"
+    | "-created_at"
+    | "-model_name"
+    | "-order"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-runtime"
+    | "-task_executor_name"
+    | "-task_status"
+    | "-updated_at"
+    | "brand_name"
+    | "created_at"
+    | "model_name"
+    | "order"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "runtime"
+    | "task_executor_name"
+    | "task_status"
+    | "updated_at"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
+  runtime_gte?: number;
+  runtime_lte?: number;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   sn?: string;
+  task_executor_name?: string;
+  task_title?: string;
   /** @pattern ^\d+$ */
   orgId: string;
   /** @pattern ^\d+$ */
@@ -3407,11 +3513,17 @@ export type VehicleSersRelatedOrgsVehiclesListData = PaginatedSerVehicleList;
 export type VehicleSersRelatedOrgsVehiclesRetrieveData = VehicleDetailed;
 
 export interface VehicleSersVehiclesListParams {
-  gos_number?: string;
+  /** Multiple values may be separated by commas. */
+  brand?: string[];
+  brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  equipment?: string[];
+  equipment_name?: string;
   /** Number of results to return per page. */
   limit?: number;
   /** Multiple values may be separated by commas. */
   model?: string[];
+  model_name?: string;
   name?: string;
   /**
    * Ordering
@@ -3422,15 +3534,62 @@ export interface VehicleSersVehiclesListParams {
    * * `-updated_at` - Updated at (descending)
    * * `order` - Order
    * * `-order` - Order (descending)
+   * * `task_status` - Task status
+   * * `-task_status` - Task status (descending)
+   * * `task_executor_name` - Task executor name
+   * * `-task_executor_name` - Task executor name (descending)
+   * * `runtime` - Runtime
+   * * `-runtime` - Runtime (descending)
+   * * `model_name` - Model name
+   * * `-model_name` - Model name (descending)
+   * * `brand_name` - Brand name
+   * * `-brand_name` - Brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
    */
-  o?: ("-created_at" | "-order" | "-updated_at" | "created_at" | "order" | "updated_at")[];
+  o?: (
+    | "-brand_name"
+    | "-created_at"
+    | "-model_name"
+    | "-order"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-runtime"
+    | "-task_executor_name"
+    | "-task_status"
+    | "-updated_at"
+    | "brand_name"
+    | "created_at"
+    | "model_name"
+    | "order"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "runtime"
+    | "task_executor_name"
+    | "task_status"
+    | "updated_at"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
+  runtime_gte?: number;
+  runtime_lte?: number;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   sn?: string;
+  task_executor_name?: string;
+  task_title?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -3679,8 +3838,10 @@ export interface WorkOrgsTasksListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -3695,7 +3856,6 @@ export interface WorkOrgsTasksListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -3705,12 +3865,59 @@ export interface WorkOrgsTasksListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -3729,6 +3936,16 @@ export interface WorkOrgsTasksListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -3841,8 +4058,10 @@ export interface WorkOrgsTasksFullListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -3857,7 +4076,6 @@ export interface WorkOrgsTasksFullListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -3867,12 +4085,59 @@ export interface WorkOrgsTasksFullListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -3891,6 +4156,16 @@ export interface WorkOrgsTasksFullListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -3904,8 +4179,10 @@ export interface WorkOrgsTasksGeosListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -3920,7 +4197,6 @@ export interface WorkOrgsTasksGeosListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -3930,12 +4206,59 @@ export interface WorkOrgsTasksGeosListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -3954,6 +4277,16 @@ export interface WorkOrgsTasksGeosListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -4046,8 +4379,10 @@ export interface WorkSersTasksListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -4062,7 +4397,6 @@ export interface WorkSersTasksListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -4072,12 +4406,59 @@ export interface WorkSersTasksListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -4096,6 +4477,16 @@ export interface WorkSersTasksListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -4237,8 +4628,10 @@ export interface WorkSersTasksFullListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -4253,7 +4646,6 @@ export interface WorkSersTasksFullListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -4263,12 +4655,59 @@ export interface WorkSersTasksFullListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -4287,6 +4726,16 @@ export interface WorkSersTasksFullListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -4300,8 +4749,10 @@ export interface WorkSersTasksGeosListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -4316,7 +4767,6 @@ export interface WorkSersTasksGeosListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -4326,12 +4776,59 @@ export interface WorkSersTasksGeosListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -4350,6 +4847,16 @@ export interface WorkSersTasksGeosListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -4363,8 +4870,10 @@ export interface WorkSersTasksVerboseListParams {
   coordinator?: string[];
   /** Multiple values may be separated by commas. */
   customer?: string[];
+  customer_name?: string;
   /** Multiple values may be separated by commas. */
   executor?: string[];
+  executor_name?: string;
   /** Multiple values may be separated by commas. */
   ids?: string[];
   /** Number of results to return per page. */
@@ -4379,7 +4888,6 @@ export interface WorkSersTasksVerboseListParams {
    * * `archived` - archived
    */
   mark?: ("archived" | "delete" | "draft" | "posted" | "reject")[];
-  number?: number;
   /**
    * Ordering
    *
@@ -4389,12 +4897,59 @@ export interface WorkSersTasksVerboseListParams {
    * * `-updated_at` - Updated at (descending)
    * * `status_date` - Status date
    * * `-status_date` - Status date (descending)
+   * * `status` - Status
+   * * `-status` - Status (descending)
+   * * `want_start_date` - Want start date
+   * * `-want_start_date` - Want start date (descending)
+   * * `plan_start_date` - Plan start date
+   * * `-plan_start_date` - Plan start date (descending)
+   * * `vehicle_model_name` - Vehicle model name
+   * * `-vehicle_model_name` - Vehicle model name (descending)
+   * * `vehicle_brand_name` - Vehicle brand name
+   * * `-vehicle_brand_name` - Vehicle brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
+   * * `executor_name` - Executor name
+   * * `-executor_name` - Executor name (descending)
    */
-  o?: ("-created_at" | "-status_date" | "-updated_at" | "created_at" | "status_date" | "updated_at")[];
+  o?: (
+    | "-created_at"
+    | "-executor_name"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-plan_start_date"
+    | "-status"
+    | "-status_date"
+    | "-updated_at"
+    | "-vehicle_brand_name"
+    | "-vehicle_model_name"
+    | "-want_start_date"
+    | "created_at"
+    | "executor_name"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "plan_start_date"
+    | "status"
+    | "status_date"
+    | "updated_at"
+    | "vehicle_brand_name"
+    | "vehicle_model_name"
+    | "want_start_date"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   /**
@@ -4413,6 +4968,16 @@ export interface WorkSersTasksVerboseListParams {
   title?: string;
   /** Multiple values may be separated by commas. */
   vehicle?: string[];
+  /** Multiple values may be separated by commas. */
+  vehicle_brand?: string[];
+  vehicle_brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_equipment?: string[];
+  vehicle_equipment_name?: string;
+  /** Multiple values may be separated by commas. */
+  vehicle_model?: string[];
+  vehicle_model_name?: string;
+  vehicle_sn?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -4420,11 +4985,17 @@ export interface WorkSersTasksVerboseListParams {
 export type WorkSersTasksVerboseListData = PaginatedSerWorkTaskVerboseList;
 
 export interface WorkSersVehiclesListParams {
-  gos_number?: string;
+  /** Multiple values may be separated by commas. */
+  brand?: string[];
+  brand_name?: string;
+  /** Multiple values may be separated by commas. */
+  equipment?: string[];
+  equipment_name?: string;
   /** Number of results to return per page. */
   limit?: number;
   /** Multiple values may be separated by commas. */
   model?: string[];
+  model_name?: string;
   name?: string;
   /**
    * Ordering
@@ -4435,15 +5006,62 @@ export interface WorkSersVehiclesListParams {
    * * `-updated_at` - Updated at (descending)
    * * `order` - Order
    * * `-order` - Order (descending)
+   * * `task_status` - Task status
+   * * `-task_status` - Task status (descending)
+   * * `task_executor_name` - Task executor name
+   * * `-task_executor_name` - Task executor name (descending)
+   * * `runtime` - Runtime
+   * * `-runtime` - Runtime (descending)
+   * * `model_name` - Model name
+   * * `-model_name` - Model name (descending)
+   * * `brand_name` - Brand name
+   * * `-brand_name` - Brand name (descending)
+   * * `organization_address_region` - Organization address region
+   * * `-organization_address_region` - Organization address region (descending)
+   * * `organization_address` - Organization address
+   * * `-organization_address` - Organization address (descending)
+   * * `organization_name` - Organization name
+   * * `-organization_name` - Organization name (descending)
    */
-  o?: ("-created_at" | "-order" | "-updated_at" | "created_at" | "order" | "updated_at")[];
+  o?: (
+    | "-brand_name"
+    | "-created_at"
+    | "-model_name"
+    | "-order"
+    | "-organization_address"
+    | "-organization_address_region"
+    | "-organization_name"
+    | "-runtime"
+    | "-task_executor_name"
+    | "-task_status"
+    | "-updated_at"
+    | "brand_name"
+    | "created_at"
+    | "model_name"
+    | "order"
+    | "organization_address"
+    | "organization_address_region"
+    | "organization_name"
+    | "runtime"
+    | "task_executor_name"
+    | "task_status"
+    | "updated_at"
+  )[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** Multiple values may be separated by commas. */
   organization?: string[];
+  organization_address?: string;
+  organization_address_district?: string;
+  organization_address_region?: string;
+  organization_name?: string;
+  runtime_gte?: number;
+  runtime_lte?: number;
   /** Multiple values may be separated by commas. */
   service_center?: string[];
   sn?: string;
+  task_executor_name?: string;
+  task_title?: string;
   /** @pattern ^\d+$ */
   orgId: string;
 }
