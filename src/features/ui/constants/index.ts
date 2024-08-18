@@ -11,6 +11,7 @@ export const DATE_FORMAT_TIME_BEHIND = 'dd.MM.yy HH:mm'
 export const DATE_FORMAT_DEFAULT = 'dd.MM.yy'
 export const DATE_FORMAT_TIME_DAY = 'HH:mm, cccccc'
 export const DATE_FORMAT_TIME = 'HH:mm'
+export const DATE_FORMAT_BACKEND = 'yyyy-MM-dd'
 export const PAGINATION_DEFAULT_LIMIT = 10
 export const SYMBOL_QUOTATION_LEFT = '«'
 export const SYMBOL_QUOTATION_RIGHT = '»'

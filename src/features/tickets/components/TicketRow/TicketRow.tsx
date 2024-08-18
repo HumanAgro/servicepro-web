@@ -29,6 +29,7 @@ export interface TicketRowProps {
 export const TicketRow = ({ ticket, onSelect }: TicketRowProps) => {
   const navigate = useNavigate()
   const { organizationID } = useOrganizationID()
+  // const { data: employees } = useOrganizationEmployees(ticket.customer?.organization)
 
   const [open, setOpen] = useState(false)
   const requisites = useMemo(() => ticket.organization?.requisites ?? null, [ticket.organization?.requisites])
