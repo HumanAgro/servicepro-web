@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { TableCellTickets } from '@features/shared/components/TableCellTickets'
 import { QueryKey } from '@features/shared/data'
 import { useApi } from '@hooks/useApi'
@@ -60,7 +60,7 @@ export const DialogTicketAssign = ({ open, engineer, onClose, onSelectTaskID }: 
         })
 
         notify({
-          message: `${getEngineerLabel(engineer.profile)} успешно назначен инженером заявки`,
+          message: `${getEmployeeLabel(engineer.profile)} успешно назначен инженером заявки`,
           variant: 'success',
         })
 

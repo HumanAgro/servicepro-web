@@ -1,7 +1,7 @@
 import { MouseEvent, useMemo, useState } from 'react'
 import { ButtonIcon } from '@components/ButtonIcon'
 import { EMPTY_VALUE_DASH } from '@constants/index'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { TicketChipStatus } from '@features/shared/components/TicketChipStatus/TicketChipStatus'
 import { useOpenTicketDrawer } from '@features/tickets/hooks/useOpenTicketDrawer'
 import { Tooltip } from '@features/ui/components/Tooltip'
@@ -250,7 +250,7 @@ export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, s
                         fontWeight: 400,
                       }}
                     >
-                      {task.customer?.profile ? getEngineerLabel(task.customer?.profile) : EMPTY_VALUE_DASH}
+                      {task.customer?.profile ? getEmployeeLabel(task.customer?.profile) : EMPTY_VALUE_DASH}
                     </span>
                   </>
                 )}

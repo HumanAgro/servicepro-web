@@ -4,7 +4,7 @@ import { Tooltip as LeafletTooltip } from 'react-leaflet/Tooltip'
 import ClientMarker from '@assets/client-marker.svg'
 import EngineerMarker from '@assets/engineer-marker.svg'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { getGeoInfoExpression } from '@features/shared/helpers'
 import { useQueryEmployee } from '@features/shared/hooks/useQueryEmployee'
 import { Box } from '@mui/material'
@@ -125,7 +125,7 @@ export const MapRouteInfo = ({ geo, selected, selectedTaskClient }: MapRouteInfo
                   >
                     {selectedTaskClient ? (
                       <>
-                        {getEngineerLabel(selectedTaskClient.profile)}
+                        {getEmployeeLabel(selectedTaskClient.profile)}
                       </>
                     ) : 'Клиент'}
                   </LeafletTooltip>
