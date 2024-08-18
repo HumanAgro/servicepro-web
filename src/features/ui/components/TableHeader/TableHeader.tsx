@@ -6,11 +6,12 @@ import { Badge, Box, SxProps, Typography } from '@mui/material'
 export interface TableHeaderProps {
   amount?: number
   sx?: SxProps
+  filtered?: boolean
   renderSearch?: ReactNode
   onFilterClick?: () => void
 }
 
-export const TableHeader = ({ amount, sx = {}, onFilterClick, renderSearch, children }: PropsWithChildren<TableHeaderProps>) => {
+export const TableHeader = ({ amount, sx = {}, filtered = false, onFilterClick, renderSearch, children }: PropsWithChildren<TableHeaderProps>) => {
   return (
     <Box
       sx={{
@@ -53,6 +54,7 @@ export const TableHeader = ({ amount, sx = {}, onFilterClick, renderSearch, chil
       {renderSearch}
       {onFilterClick && (
         <Badge
+          invisible={!filtered}
           variant={'dot'}
           color={'info'}
           overlap={'rectangular'}

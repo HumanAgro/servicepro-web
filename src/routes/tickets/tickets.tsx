@@ -143,7 +143,7 @@ export const TicketsRoute = () => {
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '4px',
+            gap: '8px',
             marginTop: '8px',
           }}
         >
