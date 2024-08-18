@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FieldDatepicker } from '@components/Field/components/FieldDatepicker'
 import { DATE_FORMAT_BACKEND } from '@constants/index'
 import { rr1 } from '@features/ui/types'
@@ -21,12 +21,12 @@ export const ReportsRoute = () => {
   const [to, setTo] = useState<Date | null>(null)
   const [report, setReport] = useState<Report | null>(null)
 
-  const onChangeFrom = (date: Date | null) => {
+  const onChangeFrom = useCallback((date: Date | null) => {
     setFrom(date)
     setTo(null)
-  }
+  }, [])
 
-  const handleClickDownload = () => {
+  const handleClickDownload = useCallback(() => {
     if (!report?.file) {
       notify({
         variant: 'error',
@@ -37,9 +37,9 @@ export const ReportsRoute = () => {
     }
 
     window.open(report.file, '_blank')
-  }
+  }, [report?.file, notify])
 
-  const handleGetReport = async () => {
+  const handleGetReport = useCallback(async () => {
     setDirty(true)
     setReport(null)
 
@@ -67,7 +67,7 @@ export const ReportsRoute = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [api.exportSersReportsCreate, from, notify, organizationID, to])
 
   return (
     <>

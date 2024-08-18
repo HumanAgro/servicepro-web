@@ -1,8 +1,11 @@
 import { FormEvent, useMemo, useState } from 'react'
 import { FieldAutocomplete } from '@components/Field'
 import { FieldAutocompleteCommonValue } from '@components/Field/components/FieldAutocomplete/types'
+import { EMPTY_VALUE_DASH } from '@constants/index'
 import { getEmployeeLabel } from '@features/engineers/helpers'
 import { QueryKey } from '@features/shared/data'
+import { getEmployeeRating } from '@features/shared/helpers'
+import { useEngineersList } from '@features/shared/hooks/useEngineersList'
 import { useQueryEngineers } from '@features/shared/hooks/useQueryEngineers'
 import { useApi } from '@hooks/useApi'
 import { useEmployment } from '@hooks/useEmployment'
@@ -22,14 +25,15 @@ export const DialogEngineerAssign = ({ open, selectedTaskID, onClose }: DialogEn
   const { api } = useApi()
   const { organizationID } = useOrganizationID()
   const { data: employment } = useEmployment()
+  const { data: engineers } = useEngineersList()
   const { notify } = useNotify()
 
   const { data, isLoading } = useQueryEngineers()
   const [value, setValue] = useState<FieldAutocompleteCommonValue | null>(null)
-  const options = useMemo((): FieldAutocompleteCommonValue[] => data?.map((engineer) => ({
-    label: `${getEmployeeLabel(engineer.profile, false)} (4.3)`,
+  const options = useMemo((): FieldAutocompleteCommonValue[] => engineers.map((engineer) => ({
+    label: `${getEmployeeLabel(engineer.profile, false)} (${getEmployeeRating(engineer.rating?.value) || EMPTY_VALUE_DASH})`,
     value: engineer.id.toString(),
-  })) ?? [], [data])
+  })), [engineers])
 
   const mutation = useMutation({
     mutationFn: async () => {

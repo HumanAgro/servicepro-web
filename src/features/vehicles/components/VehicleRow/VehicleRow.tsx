@@ -7,6 +7,7 @@ import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { DialogEngineerAssign } from '@features/shared/components/DialogEngineerAssign'
 import { TableCellTickets } from '@features/shared/components/TableCellTickets'
 import { QueryKey } from '@features/shared/data'
+import { useEmployeeRating } from '@features/shared/hooks/useEmployeeRating'
 import { useQueryRelatedOrgs } from '@features/shared/hooks/useQueryRelatedOrgs'
 import { useOpenTicketDrawer } from '@features/tickets/hooks/useOpenTicketDrawer'
 import { RuntimeUnitEnumLabel } from '@features/vehicles/data'
@@ -34,6 +35,7 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
   const [selectedTaskID, setSelectedTaskID] = useState<number | null>(vehicle.tasks?.[0]?.id ?? null)
   const selectedTask = useMemo(() => vehicle.tasks?.find(({ id }) => id === selectedTaskID) ?? null, [selectedTaskID, vehicle.tasks])
   const organization = useMemo(() => relatedOrgs?.find(({ id }) => id === vehicle.organization), [relatedOrgs, vehicle.organization])
+  const { rating } = useEmployeeRating(selectedTask?.executor?.id)
 
   const [engineerAssignOpen, setEngineerAssignOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -138,6 +140,7 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
         >
           <EngineerAvatar
             profile={selectedTask?.executor?.profile ?? null}
+            rating={rating}
           />
         </TableCell>
         <TableCell

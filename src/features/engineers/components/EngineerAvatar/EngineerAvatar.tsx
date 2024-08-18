@@ -17,10 +17,11 @@ interface EngineerAvatarProps {
   emptyLabel?: string
   sx?: SxProps
   renderAfterChip?: ReactNode
+  rating?: string | null
   onClick?: () => void
 }
 
-export const EngineerAvatar = ({ variant = 'default', size = 500, profile = {}, fullName = 'Без имени', emptyLabel = 'Не назначен', labelled = true, sx, renderAfterChip, onClick }: EngineerAvatarProps) => {
+export const EngineerAvatar = ({ variant = 'default', size = 500, profile = {}, fullName = 'Без имени', emptyLabel = 'Не назначен', labelled = true, sx, renderAfterChip, rating, onClick }: EngineerAvatarProps) => {
   const avatar = (
     <Avatar
       alt={fullName}
@@ -83,7 +84,7 @@ export const EngineerAvatar = ({ variant = 'default', size = 500, profile = {}, 
           label={(
             <>
               {profile ? getEmployeeLabel(profile) : emptyLabel}
-              {profile && (
+              {profile && rating && (
                 <Typography
                   component={'span'}
                   variant={'body2'}
@@ -93,7 +94,7 @@ export const EngineerAvatar = ({ variant = 'default', size = 500, profile = {}, 
                     marginLeft: '6px',
                   }}
                 >
-                  4.3
+                  {rating}
                 </Typography>
               )}
             </>

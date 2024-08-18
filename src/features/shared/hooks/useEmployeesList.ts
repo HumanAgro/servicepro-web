@@ -4,16 +4,15 @@ import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { useQuery } from '@tanstack/react-query'
 
-export const useOrganizationEmployees = (relatedOrganization: number) => {
+export const useEmployeesList = () => {
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
 
   return useQuery({
-    queryKey: [QueryKey.OrganizationEmployees, organizationID, relatedOrganization],
+    queryKey: [QueryKey.OrganizationEmployees, organizationID],
     queryFn: async () => {
-      const { data } = await api.orgSersRelatedOrgsEmployeesList({
+      const { data } = await api.orgOrgsEmployeesList({
         orgId: organizationID.toString(),
-        relatedId: relatedOrganization.toString(),
       })
 
       return data ?? []

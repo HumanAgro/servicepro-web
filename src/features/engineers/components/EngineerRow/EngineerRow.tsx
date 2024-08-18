@@ -4,6 +4,7 @@ import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { DialogTicketAssign } from '@features/shared/components/DialogTicketAssign'
 import { TableCellTickets } from '@features/shared/components/TableCellTickets'
 import { TicketChipStatus } from '@features/shared/components/TicketChipStatus/TicketChipStatus'
+import { useEmployeeRating } from '@features/shared/hooks/useEmployeeRating'
 import { TableCell, TableRow } from '@mui/material'
 import { WorkEmployee } from '~/api/servicepro.generated'
 
@@ -12,6 +13,7 @@ export interface EngineerRow {
 }
 
 export const EngineerRow = ({ data }: EngineerRow) => {
+  const { rating } = useEmployeeRating(data.id)
   const [open, setOpen] = useState(false)
   const [selectedTaskID, setSelectedTaskID] = useState<number | null>(data.tasks?.[0]?.id ?? null)
   const selectedTask = useMemo(() => data.tasks.find(({ id }) => id === selectedTaskID) ?? null, [selectedTaskID, data.tasks])
@@ -23,6 +25,7 @@ export const EngineerRow = ({ data }: EngineerRow) => {
       <TableCell>
         <EngineerAvatar
           profile={data.profile}
+          rating={rating}
         />
       </TableCell>
       <TableCell>
