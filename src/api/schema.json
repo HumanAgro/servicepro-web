@@ -4233,7 +4233,40 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "gos_number",
+                        "name": "brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment_name",
                         "schema": {
                             "type": "string"
                         }
@@ -4262,6 +4295,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "name",
                         "schema": {
                             "type": "string"
@@ -4275,16 +4315,32 @@
                             "items": {
                                 "type": "string",
                                 "enum": [
+                                    "-brand_name",
                                     "-created_at",
+                                    "-model_name",
                                     "-order",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-runtime",
+                                    "-task_executor_name",
+                                    "-task_status",
                                     "-updated_at",
+                                    "brand_name",
                                     "created_at",
+                                    "model_name",
                                     "order",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "runtime",
+                                    "task_executor_name",
+                                    "task_status",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)\n* `task_status` - Task status\n* `-task_status` - Task status (descending)\n* `task_executor_name` - Task executor name\n* `-task_executor_name` - Task executor name (descending)\n* `runtime` - Runtime\n* `-runtime` - Runtime (descending)\n* `model_name` - Model name\n* `-model_name` - Model name (descending)\n* `brand_name` - Brand name\n* `-brand_name` - Brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -4321,6 +4377,48 @@
                     },
                     {
                         "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_gte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_lte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "service_center",
                         "schema": {
                             "type": "array",
@@ -4335,6 +4433,20 @@
                     {
                         "in": "query",
                         "name": "sn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_title",
                         "schema": {
                             "type": "string"
                         }
@@ -5555,7 +5667,40 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "gos_number",
+                        "name": "brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment_name",
                         "schema": {
                             "type": "string"
                         }
@@ -5584,6 +5729,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "name",
                         "schema": {
                             "type": "string"
@@ -5597,16 +5749,32 @@
                             "items": {
                                 "type": "string",
                                 "enum": [
+                                    "-brand_name",
                                     "-created_at",
+                                    "-model_name",
                                     "-order",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-runtime",
+                                    "-task_executor_name",
+                                    "-task_status",
                                     "-updated_at",
+                                    "brand_name",
                                     "created_at",
+                                    "model_name",
                                     "order",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "runtime",
+                                    "task_executor_name",
+                                    "task_status",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)\n* `task_status` - Task status\n* `-task_status` - Task status (descending)\n* `task_executor_name` - Task executor name\n* `-task_executor_name` - Task executor name (descending)\n* `runtime` - Runtime\n* `-runtime` - Runtime (descending)\n* `model_name` - Model name\n* `-model_name` - Model name (descending)\n* `brand_name` - Brand name\n* `-brand_name` - Brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -5642,6 +5810,34 @@
                         "style": "form"
                     },
                     {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "in": "path",
                         "name": "related_id",
                         "schema": {
@@ -5649,6 +5845,20 @@
                             "pattern": "^\\d+$"
                         },
                         "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_gte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_lte",
+                        "schema": {
+                            "type": "integer"
+                        }
                     },
                     {
                         "in": "query",
@@ -5666,6 +5876,20 @@
                     {
                         "in": "query",
                         "name": "sn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_title",
                         "schema": {
                             "type": "string"
                         }
@@ -5759,7 +5983,40 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "gos_number",
+                        "name": "brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment_name",
                         "schema": {
                             "type": "string"
                         }
@@ -5788,6 +6045,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "name",
                         "schema": {
                             "type": "string"
@@ -5801,16 +6065,32 @@
                             "items": {
                                 "type": "string",
                                 "enum": [
+                                    "-brand_name",
                                     "-created_at",
+                                    "-model_name",
                                     "-order",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-runtime",
+                                    "-task_executor_name",
+                                    "-task_status",
                                     "-updated_at",
+                                    "brand_name",
                                     "created_at",
+                                    "model_name",
                                     "order",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "runtime",
+                                    "task_executor_name",
+                                    "task_status",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)\n* `task_status` - Task status\n* `-task_status` - Task status (descending)\n* `task_executor_name` - Task executor name\n* `-task_executor_name` - Task executor name (descending)\n* `runtime` - Runtime\n* `-runtime` - Runtime (descending)\n* `model_name` - Model name\n* `-model_name` - Model name (descending)\n* `brand_name` - Brand name\n* `-brand_name` - Brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -5847,6 +6127,48 @@
                     },
                     {
                         "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_gte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_lte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "service_center",
                         "schema": {
                             "type": "array",
@@ -5861,6 +6183,20 @@
                     {
                         "in": "query",
                         "name": "sn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_title",
                         "schema": {
                             "type": "string"
                         }
@@ -8182,6 +8518,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -8192,6 +8535,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -8237,13 +8587,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -8251,15 +8594,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -8293,6 +8654,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -8349,6 +8738,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -9669,6 +10125,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -9679,6 +10142,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -9724,13 +10194,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -9738,15 +10201,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -9780,6 +10261,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -9836,6 +10345,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -9908,6 +10484,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -9918,6 +10501,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -9963,13 +10553,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -9977,15 +10560,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -10019,6 +10620,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -10075,6 +10704,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -10628,6 +11324,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -10638,6 +11341,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -10683,13 +11393,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -10697,15 +11400,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -10739,6 +11460,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -10795,6 +11544,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -12336,6 +13152,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -12346,6 +13169,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -12391,13 +13221,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -12405,15 +13228,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -12447,6 +13288,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -12503,6 +13372,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -12575,6 +13511,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -12585,6 +13528,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -12630,13 +13580,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -12644,15 +13587,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -12686,6 +13647,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -12742,6 +13731,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -12814,6 +13870,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "customer_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "executor",
                         "schema": {
                             "type": "array",
@@ -12824,6 +13887,13 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -12869,13 +13939,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "number",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -12883,15 +13946,33 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-executor_name",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-plan_start_date",
+                                    "-status",
                                     "-status_date",
                                     "-updated_at",
+                                    "-vehicle_brand_name",
+                                    "-vehicle_model_name",
+                                    "-want_start_date",
                                     "created_at",
+                                    "executor_name",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "plan_start_date",
+                                    "status",
                                     "status_date",
-                                    "updated_at"
+                                    "updated_at",
+                                    "vehicle_brand_name",
+                                    "vehicle_model_name",
+                                    "want_start_date"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `status_date` - Status date\n* `-status_date` - Status date (descending)\n* `status` - Status\n* `-status` - Status (descending)\n* `want_start_date` - Want start date\n* `-want_start_date` - Want start date (descending)\n* `plan_start_date` - Plan start date\n* `-plan_start_date` - Plan start date (descending)\n* `vehicle_model_name` - Vehicle model name\n* `-vehicle_model_name` - Vehicle model name (descending)\n* `vehicle_brand_name` - Vehicle brand name\n* `-vehicle_brand_name` - Vehicle brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)\n* `executor_name` - Executor name\n* `-executor_name` - Executor name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -12925,6 +14006,34 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "in": "query",
@@ -12981,6 +14090,73 @@
                         "description": "Multiple values may be separated by commas.",
                         "explode": false,
                         "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_equipment_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicle_sn",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "tags": [
@@ -13014,7 +14190,40 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "gos_number",
+                        "name": "brand",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "brand_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Multiple values may be separated by commas.",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "in": "query",
+                        "name": "equipment_name",
                         "schema": {
                             "type": "string"
                         }
@@ -13043,6 +14252,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "model_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "name",
                         "schema": {
                             "type": "string"
@@ -13056,16 +14272,32 @@
                             "items": {
                                 "type": "string",
                                 "enum": [
+                                    "-brand_name",
                                     "-created_at",
+                                    "-model_name",
                                     "-order",
+                                    "-organization_address",
+                                    "-organization_address_region",
+                                    "-organization_name",
+                                    "-runtime",
+                                    "-task_executor_name",
+                                    "-task_status",
                                     "-updated_at",
+                                    "brand_name",
                                     "created_at",
+                                    "model_name",
                                     "order",
+                                    "organization_address",
+                                    "organization_address_region",
+                                    "organization_name",
+                                    "runtime",
+                                    "task_executor_name",
+                                    "task_status",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `order` - Order\n* `-order` - Order (descending)\n* `task_status` - Task status\n* `-task_status` - Task status (descending)\n* `task_executor_name` - Task executor name\n* `-task_executor_name` - Task executor name (descending)\n* `runtime` - Runtime\n* `-runtime` - Runtime (descending)\n* `model_name` - Model name\n* `-model_name` - Model name (descending)\n* `brand_name` - Brand name\n* `-brand_name` - Brand name (descending)\n* `organization_address_region` - Organization address region\n* `-organization_address_region` - Organization address region (descending)\n* `organization_address` - Organization address\n* `-organization_address` - Organization address (descending)\n* `organization_name` - Organization name\n* `-organization_name` - Organization name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -13102,6 +14334,48 @@
                     },
                     {
                         "in": "query",
+                        "name": "organization_address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "organization_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_gte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "runtime_lte",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "service_center",
                         "schema": {
                             "type": "array",
@@ -13116,6 +14390,20 @@
                     {
                         "in": "query",
                         "name": "sn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_executor_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "task_title",
                         "schema": {
                             "type": "string"
                         }
