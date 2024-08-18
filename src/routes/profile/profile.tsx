@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Dropzone } from '@components/Dropzone'
 import { FieldInput } from '@components/Field'
+import { SYMBOL_DIVIDER_DOT } from '@constants/index'
 import { getEmployeeFullName } from '@features/engineers/helpers'
 import { QueryKey } from '@features/shared/data'
 import { useEmployment } from '@features/shared/hooks/useEmployment'
@@ -93,6 +94,15 @@ export const ProfileRoute = () => {
         variant={'h5'}
       >
         {employment?.profile ? getEmployeeFullName(employment.profile) : 'Профиль'}
+        <Typography
+          component={'span'}
+          variant={'h5'}
+          fontWeight={400}
+          sx={{ color: (theme) => theme.palette.grey['600'] }}
+        >
+          {` ${SYMBOL_DIVIDER_DOT} `}
+          {employment?.profile?.position}
+        </Typography>
       </Typography>
       <Typography
         variant={'h6'}

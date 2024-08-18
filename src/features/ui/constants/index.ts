@@ -15,4 +15,5 @@ export const DATE_FORMAT_BACKEND = 'yyyy-MM-dd'
 export const PAGINATION_DEFAULT_LIMIT = 10
 export const SYMBOL_QUOTATION_LEFT = '«'
 export const SYMBOL_QUOTATION_RIGHT = '»'
+export const SYMBOL_DIVIDER_DOT = '•'
 export const MAP_FLY_DURATION = 0.25
