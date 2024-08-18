@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { OrganizationInfoDrawerContent } from '@features/organization/components/OrganizationInfoDrawerContent'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import ContextMenu from '@features/ui/components/ContextMenu'
-import { useProfile } from '@hooks/useProfile'
+import { useOrganizationID } from '@hooks/useOrganizationID'
 import { useSignOut } from '@hooks/useSignOut'
-import { BusinessCenter, Info, Logout, Person, Settings } from '@mui/icons-material'
+import { BusinessCenter, Info, Logout, Person } from '@mui/icons-material'
 import {
   Avatar,
   Badge,
@@ -28,7 +29,8 @@ const RoleEnumLabel: Record<RoleEnum, string> = {
 }
 
 export const HeaderProfileMenu = () => {
-  const { employment } = useProfile()
+  const { employment } = useEmployment()
+  const { organizationID } = useOrganizationID()
   const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
   const isUserMenuOpen = Boolean(anchorEl)
@@ -161,13 +163,13 @@ export const HeaderProfileMenu = () => {
             <Divider sx={{ marginBottom: '8px' }} />
           </Box>
           <MenuItem
-            to={'/settings'}
+            to={`/${organizationID}/profile`}
             component={Link}
           >
             <ListItemIcon>
-              <Settings fontSize="small" />
+              <Person fontSize="small" />
             </ListItemIcon>
-            Настройки
+            Профиль
           </MenuItem>
           <Divider />
           <MenuItem onClick={signOut}>

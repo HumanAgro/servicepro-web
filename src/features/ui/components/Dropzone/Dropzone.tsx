@@ -15,7 +15,6 @@ interface DropzoneProps {
 }
 
 export const Dropzone = ({ files, format, height = [300, 180], maxFiles, touched, onChange, content }: DropzoneProps) => {
-
   const onDrop = useCallback((files: File[]) => {
     onChange(files)
   }, [onChange])

@@ -1,4 +1,5 @@
 import { QueryKey } from '@features/shared/data'
+import { staleTime } from '@helpers/index'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { useQuery } from '@tanstack/react-query'
@@ -16,6 +17,6 @@ export const useQueryRelatedOrgs = () => {
 
       return data ?? []
     },
-    staleTime: 5 * 60 * 1000,
+    staleTime: staleTime({ minutes: 15 }),
   })
 }

@@ -2,21 +2,21 @@ import { ReadyState } from 'react-use-websocket'
 import { RoleEnum } from '~/api/servicepro.generated'
 
 export enum QueryKey {
-  TicketsGeos = 'tickets-geos',
-  TicketsEngineers = 'tickets-engineers',
-  Engineers = 'engineers',
   Clients = 'clients',
   Client = 'client',
   ClientVehicles = 'client-vehicles',
   ClientTickets = 'client-tickets',
   ClientEmployees = 'client-employees',
+  Chats = 'chats',
+  Engineers = 'engineers',
+  Employee = 'employee',
   Ticket = 'ticket',
+  TicketsGeos = 'tickets-geos',
+  TicketsEngineers = 'tickets-engineers',
   TicketAttachments = 'ticket-attachments',
   TicketResult = 'ticket-result',
   TicketReviews = 'ticket-review',
   TicketStatuses = 'ticket-statuses',
-  Chats = 'chats',
-  Employee = 'employee',
   Vehicles = 'vehicles',
   Vehicle = 'vehicle',
   VehicleDocuments = 'vehicle-documents',
@@ -24,8 +24,9 @@ export enum QueryKey {
   VehicleRuntime = 'vehicle-runtime',
   VehicleRecommendations = 'vehicle-recommendations',
   VehicleTickets = 'vehicle-tickets',
-  RelatedOrgs = 'related-orgs',
   OrganizationEmployees = 'organization-employees',
+  Profile = 'profile',
+  RelatedOrgs = 'related-orgs',
 }
 
 export enum SearchParamsKey {

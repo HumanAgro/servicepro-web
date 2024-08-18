@@ -11,6 +11,7 @@ import { ClientRoute } from '@routes/clients/client'
 import { ClientsRoute } from '@routes/clients/clients'
 import { EngineersRoute } from '@routes/engineers/engineers'
 import { OrganizationRoute } from '@routes/organization'
+import { ProfileRoute } from '@routes/profile/profile'
 import { ReportsRoute } from '@routes/reports/reports'
 import { TicketsRoute } from '@routes/tickets/tickets'
 import { VehicleRoute } from '@routes/vehicles/vehicle'
@@ -91,6 +92,10 @@ export const router = createBrowserRouter(getConfiguredRoutes([
               {
                 path: 'reports',
                 element: <ReportsRoute />,
+              },
+              {
+                path: 'profile',
+                element: <ProfileRoute />,
               },
             ],
           },
