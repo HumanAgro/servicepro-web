@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { DrawerContent } from '@components/DrawerContent'
-import { FieldAutocomplete, FieldInput } from '@components/Field'
+import { FieldAutocompleteMultiple, FieldInput } from '@components/Field'
 import { StatusEnumLabel } from '@features/tickets/data'
 import { getStatusOptions } from '@features/tickets/helpers'
 import { TicketsPageFilters } from '@features/tickets/types'
@@ -84,15 +84,12 @@ export const TicketDrawerFilters = ({ open, filters: filtersProp, onClose, onCha
             placeholder={'Введите модель техники'}
             onChange={(event) => handleChange({ model: event.target.value })}
           />
-          <FieldAutocomplete
+          <FieldAutocompleteMultiple
             name={'status'}
             label={'Статус заявки'}
-            value={filters.status ? {
-              value: filters.status,
-              label: StatusEnumLabel[filters.status],
-            } : null}
+            value={filters.status.map((status) => ({ value: status, label: StatusEnumLabel[status] }))}
             options={getStatusOptions()}
-            onChange={(data) => handleChange({ status: data?.value as StatusEnum ?? null })}
+            onChange={(data) => handleChange({ status: data.map(({ value }) => value as StatusEnum) })}
           />
         </Box>
       </DrawerContent>

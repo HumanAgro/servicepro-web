@@ -38,7 +38,7 @@ export const TicketsRoute = () => {
     district: '',
     brand: '',
     model: '',
-    status: null,
+    status: [],
   })
 
   const { data, isSuccess } = useQuery({
@@ -53,7 +53,7 @@ export const TicketsRoute = () => {
         organization_address_district: filters.district,
         vehicle_brand_name: filters.brand,
         vehicle_model_name: filters.model,
-        status: filters.status ? [filters.status] : undefined,
+        status: filters.status,
       }
 
       const { data: tasks, headers } = await api.workSersTasksVerboseList(options)
@@ -144,7 +144,7 @@ export const TicketsRoute = () => {
             display: 'flex',
             flexWrap: 'wrap',
             gap: '8px',
-            marginTop: '8px',
+            marginTop: '16px',
           }}
         >
           {filters.search && (
@@ -182,13 +182,13 @@ export const TicketsRoute = () => {
               onDelete={() => changeFilters({ model: '' })}
             />
           )}
-          {filters.status && (
+          {filters.status.map((status) => (
             <Chip
               size={'small'}
-              label={`Статус заявки: "${StatusEnumLabel[filters.status]}"`}
-              onDelete={() => changeFilters({ status: null })}
+              label={`Статус заявки: "${StatusEnumLabel[status]}"`}
+              onDelete={() => changeFilters({ status: filters.status.filter((s) => s !== status) })}
             />
-          )}
+          ))}
         </Box>
         <TicketsTable
           page={page}

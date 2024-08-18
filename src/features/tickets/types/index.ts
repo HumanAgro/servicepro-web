@@ -11,5 +11,5 @@ export interface TicketsPageFilters {
   district: string
   brand: string
   model: string
-  status: StatusEnum | null
+  status: StatusEnum[]
 }

@@ -1,4 +1,5 @@
 import { QueryClient } from '@tanstack/react-query'
+import { stringify } from 'qs'
 import { Api as ChatApi } from '~/api/servicepro-chat.generated'
 import { Api as MainApi, ApiConfig } from '~/api/servicepro.generated'
 
@@ -14,8 +15,8 @@ export const publicClient = new MainApi(settings)
 export const privateClient = new MainApi({
   ...settings,
   withCredentials: true,
-  paramsSerializer: {
-    indexes: null,
+  paramsSerializer: function(params) {
+    return stringify(params, { arrayFormat: 'comma' })
   },
 })
 
