@@ -7,9 +7,10 @@ import { Badge, Box, InputAdornment, SxProps, Typography } from '@mui/material'
 export interface TableHeaderProps {
   amount?: number
   sx?: SxProps
+  onFilterClick?: () => void
 }
 
-export const TableHeader = ({ amount, sx = {}, children }: PropsWithChildren<TableHeaderProps>) => {
+export const TableHeader = ({ amount, sx = {}, onFilterClick, children }: PropsWithChildren<TableHeaderProps>) => {
   return (
     <Box
       sx={{
@@ -65,24 +66,26 @@ export const TableHeader = ({ amount, sx = {}, children }: PropsWithChildren<Tab
           }}
         />
       </form>
-      <Badge
-        variant={'dot'}
-        color={'info'}
-        overlap={'rectangular'}
-        sx={{
-          '& > .MuiBadge-badge': {
-            height: '12px',
-            width: '12px',
-            borderRadius: '6px',
-          },
-        }}
-      >
-        <ButtonIconSquare
-          onClick={() => {}}
+      {onFilterClick && (
+        <Badge
+          variant={'dot'}
+          color={'info'}
+          overlap={'rectangular'}
+          sx={{
+            '& > .MuiBadge-badge': {
+              height: '12px',
+              width: '12px',
+              borderRadius: '6px',
+            },
+          }}
         >
-          <FilterAltTwoTone fontSize={'medium'} />
-        </ButtonIconSquare>
-      </Badge>
+          <ButtonIconSquare
+            onClick={() => {}}
+          >
+            <FilterAltTwoTone fontSize={'medium'} />
+          </ButtonIconSquare>
+        </Badge>)}
+
     </Box>
   )
 }

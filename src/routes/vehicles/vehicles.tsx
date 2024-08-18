@@ -24,6 +24,7 @@ export const VehiclesRoute = () => {
     <>
       <TableHeader
         sx={{ marginTop: '8px' }}
+        onFilterClick={() => {}}
       >
         Техника
       </TableHeader>

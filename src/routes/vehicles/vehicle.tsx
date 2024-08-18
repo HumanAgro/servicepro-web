@@ -11,6 +11,7 @@ import { VehicleTabDocumentation } from '@features/vehicles/components/VehicleTa
 import { VehicleTabNotes } from '@features/vehicles/components/VehicleTabNotes'
 import { VehicleTabRecommendations } from '@features/vehicles/components/VehicleTabRecommendations'
 import { VehicleTabRuntime } from '@features/vehicles/components/VehicleTabRuntime'
+import { RuntimeUnitEnumLabel } from '@features/vehicles/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
@@ -75,7 +76,7 @@ export const VehicleRoute = () => {
       },
       {
         label: 'Наработка',
-        value: data?.summary?.runtime_sum ? `${data?.summary.runtime_sum}мч` : EMPTY_VALUE_DASH,
+        value: data?.summary?.runtime_sum ? `${data?.summary.runtime_sum} ${RuntimeUnitEnumLabel[data?.model.equipment.runtime_unit]}` : EMPTY_VALUE_DASH,
       },
     ]
   }, [data])
@@ -202,7 +203,10 @@ export const VehicleRoute = () => {
             value={VehicleTab.OperatingTime}
             sx={{ paddingX: 0, width: '100%' }}
           >
-            <VehicleTabRuntime vehicleID={vehicleID} />
+            <VehicleTabRuntime
+              vehicleID={vehicleID}
+              vehicle={data ?? null}
+            />
           </TabPanel>
         </TabContext>
       </Box>

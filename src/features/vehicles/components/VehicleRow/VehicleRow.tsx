@@ -9,6 +9,7 @@ import { TableCellTickets } from '@features/shared/components/TableCellTickets'
 import { QueryKey } from '@features/shared/data'
 import { useQueryRelatedOrgs } from '@features/shared/hooks/useQueryRelatedOrgs'
 import { useOpenTicketDrawer } from '@features/tickets/hooks/useOpenTicketDrawer'
+import { RuntimeUnitEnumLabel } from '@features/vehicles/data'
 import { useApi } from '@hooks/useApi'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
@@ -119,7 +120,7 @@ export const VehicleRow = ({ vehicle }: VehicleRow) => {
           {vehicle.sn ? vehicle.sn : EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
-          {vehicle.summary?.runtime_sum ? `${vehicle.summary.runtime_sum}мч` : EMPTY_VALUE_DASH}
+          {vehicle.summary?.runtime_sum ? `${vehicle.summary.runtime_sum} ${RuntimeUnitEnumLabel[vehicle.model.equipment.runtime_unit]}` : EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell
           onClick={(e) => e.stopPropagation()}

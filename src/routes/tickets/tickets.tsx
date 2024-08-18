@@ -89,6 +89,7 @@ export const TicketsRoute = () => {
         <TableHeader
           sx={{ marginTop: '8px' }}
           amount={count}
+          onFilterClick={() => undefined}
         >
           Заявки
         </TableHeader>
