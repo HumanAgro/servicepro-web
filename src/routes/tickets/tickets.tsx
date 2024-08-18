@@ -144,7 +144,10 @@ export const TicketsRoute = () => {
             display: 'flex',
             flexWrap: 'wrap',
             gap: '8px',
-            marginTop: '16px',
+            '&:not(:empty)': {
+              marginTop: '12px',
+            },
+
           }}
         >
           {filters.search && (
