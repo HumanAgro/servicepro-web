@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { theme } from '@data/theme'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { Person, PersonOff } from '@mui/icons-material'
 import { Avatar, Box, Chip, SxProps, Typography } from '@mui/material'
 
@@ -82,7 +82,7 @@ export const EngineerAvatar = ({ variant = 'default', size = 500, profile = {}, 
           avatar={avatar}
           label={(
             <>
-              {profile ? getEngineerLabel(profile) : emptyLabel}
+              {profile ? getEmployeeLabel(profile) : emptyLabel}
               {profile && (
                 <Typography
                   component={'span'}

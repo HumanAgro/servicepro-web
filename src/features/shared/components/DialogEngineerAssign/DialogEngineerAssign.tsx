@@ -1,7 +1,7 @@
 import { FormEvent, useMemo, useState } from 'react'
 import { FieldAutocomplete } from '@components/Field'
 import { FieldAutocompleteCommonValue } from '@components/Field/components/FieldAutocomplete/types'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { QueryKey } from '@features/shared/data'
 import { useQueryEngineers } from '@features/shared/hooks/useQueryEngineers'
 import { useApi } from '@hooks/useApi'
@@ -27,7 +27,7 @@ export const DialogEngineerAssign = ({ open, selectedTaskID, onClose }: DialogEn
   const { data, isLoading } = useQueryEngineers()
   const [value, setValue] = useState<FieldAutocompleteCommonValue | null>(null)
   const options = useMemo((): FieldAutocompleteCommonValue[] => data?.map((engineer) => ({
-    label: `${getEngineerLabel(engineer.profile, false)} (4.3)`,
+    label: `${getEmployeeLabel(engineer.profile, false)} (4.3)`,
     value: engineer.id.toString(),
   })) ?? [], [data])
 
@@ -50,7 +50,7 @@ export const DialogEngineerAssign = ({ open, selectedTaskID, onClose }: DialogEn
         })
 
         notify({
-          message: `${getEngineerLabel(engineer.profile)} успешно назначен инженером заявки`,
+          message: `${getEmployeeLabel(engineer.profile)} успешно назначен инженером заявки`,
           variant: 'success',
         })
 

@@ -1,6 +1,6 @@
 import { ButtonIcon } from '@components/ButtonIcon'
 import { MAP_ACTIONS_Z_INDEX } from '@constants/index'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { useOpenTicketDrawer } from '@features/tickets/hooks/useOpenTicketDrawer'
 import { TaskVerbose } from '@features/tickets/types'
 import { ChevronLeft, ChevronRight, Visibility } from '@mui/icons-material'
@@ -77,7 +77,7 @@ export const MapControlTickets = ({ selectedTask, onSelectNext, onSelectPrev }: 
               fontWeight={500}
               sx={{ marginLeft: '4px' }}
             >
-              {getEngineerLabel(selectedTask.task.customer?.profile ?? {})}
+              {getEmployeeLabel(selectedTask.task.customer?.profile ?? {})}
             </Typography>
           </>
         ) : (

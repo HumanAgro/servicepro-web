@@ -1,8 +1,8 @@
-import { LabelValue } from '@features/shared/types'
+import { ReactNode } from 'react'
 import { Box, CircularProgress, Skeleton, SxProps, Typography } from '@mui/material'
 
 interface PanelInfoProps {
-  info: LabelValue[]
+  info: { label: string; value: string | ReactNode }[]
   icon?: string
   labelWidth?: number
   sx?: SxProps
@@ -16,7 +16,7 @@ export const PanelInfo = ({ info, icon, labelWidth = 150, sx, isFetching }: Pane
         display: 'grid',
         ...(typeof icon !== 'string' ? {} : { gridTemplateColumns: '150px 1fr' }),
         gap: '32px',
-        minWidth: '700px',
+        width: '1000px',
         padding: '24px 48px 24px 24px',
         borderRadius: '8px',
         border: '1px solid',
@@ -61,7 +61,7 @@ export const PanelInfo = ({ info, icon, labelWidth = 150, sx, isFetching }: Pane
             key={index}
             sx={{
               display: 'grid',
-              alignItems: 'center',
+              alignItems: 'flex-start',
               gridTemplateColumns: `${labelWidth}px 1fr`,
               gap: '16px',
             }}

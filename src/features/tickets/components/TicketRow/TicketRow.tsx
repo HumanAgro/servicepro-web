@@ -4,7 +4,7 @@ import { ButtonIcon } from '@components/ButtonIcon'
 import { TableCellActions } from '@components/TableCellActions'
 import { DATE_FORMAT_DEFAULT, DATE_FORMAT_TIME, EMPTY_VALUE_DASH } from '@constants/index'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { DialogEngineerAssign } from '@features/shared/components/DialogEngineerAssign'
 import { TicketChipStatus } from '@features/shared/components/TicketChipStatus/TicketChipStatus'
 import { ticketStatusesEngineerEditable } from '@features/tickets/data'
@@ -62,7 +62,7 @@ export const TicketRow = ({ ticket, onSelect }: TicketRowProps) => {
               color: (theme) => theme.palette.grey['600'],
             }}
           >
-            {ticket.customer?.profile ? getEngineerLabel(ticket.customer?.profile) : EMPTY_VALUE_DASH}
+            {ticket.customer?.profile ? getEmployeeLabel(ticket.customer?.profile) : EMPTY_VALUE_DASH}
           </Box>
         </TableCell>
         <TableCell>
