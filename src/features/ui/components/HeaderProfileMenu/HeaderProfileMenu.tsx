@@ -5,7 +5,7 @@ import { useEmployment } from '@features/shared/hooks/useEmployment'
 import ContextMenu from '@features/ui/components/ContextMenu'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { useSignOut } from '@hooks/useSignOut'
-import { BusinessCenter, Info, Logout, Person, Settings } from '@mui/icons-material'
+import { BusinessCenter, Info, Logout, Person } from '@mui/icons-material'
 import {
   Avatar,
   Badge,
@@ -170,15 +170,6 @@ export const HeaderProfileMenu = () => {
               <Person fontSize="small" />
             </ListItemIcon>
             Профиль
-          </MenuItem>
-          <MenuItem
-            to={'/settings'}
-            component={Link}
-          >
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            Настройки
           </MenuItem>
           <Divider />
           <MenuItem onClick={signOut}>
