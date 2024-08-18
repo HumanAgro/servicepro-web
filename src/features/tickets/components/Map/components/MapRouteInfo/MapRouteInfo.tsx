@@ -5,8 +5,8 @@ import ClientMarker from '@assets/client-marker.svg'
 import EngineerMarker from '@assets/engineer-marker.svg'
 import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { getEmployeeLabel } from '@features/engineers/helpers'
-import { getGeoInfoExpression } from '@features/shared/helpers'
-import { useQueryEmployee } from '@features/shared/hooks/useQueryEmployee'
+import { getEmployeeRating, getGeoInfoExpression } from '@features/shared/helpers'
+import { useEmployee } from '@features/shared/hooks/useEmployee'
 import { Box } from '@mui/material'
 import { icon, IconOptions } from 'leaflet'
 import { EmployeeDetailed, WorkTaskGeo } from '~/api/servicepro.generated'
@@ -31,7 +31,7 @@ export const MapRouteInfo = ({ geo, selected, selectedTaskClient }: MapRouteInfo
     iconAnchor: [20, 36],
   }, [selected])
 
-  const executorProfileQuery = useQueryEmployee(executor?.id ?? null)
+  const { employee: engineer } = useEmployee(executor?.id)
 
   return (
     <Box>
@@ -91,12 +91,13 @@ export const MapRouteInfo = ({ geo, selected, selectedTaskClient }: MapRouteInfo
                     className={'arrowlessTooltip'}
                     permanent
                   >
-                    {executorProfileQuery.isSuccess ? (
+                    {engineer ? (
                       <>
                         <EngineerAvatar
                           variant={'uncontained'}
                           size={400}
-                          profile={executorProfileQuery.data}
+                          profile={engineer.profile}
+                          rating={getEmployeeRating(engineer.rating.value)}
                         />
                       </>
                     ) : 'Инженер'}
