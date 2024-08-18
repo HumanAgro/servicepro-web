@@ -1,16 +1,16 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 import { ButtonIconSquare } from '@components/ButtonIconSquare'
-import { FieldInput } from '@components/Field'
-import { FilterAltTwoTone, Search } from '@mui/icons-material'
-import { Badge, Box, InputAdornment, SxProps, Typography } from '@mui/material'
+import { FilterAltTwoTone } from '@mui/icons-material'
+import { Badge, Box, SxProps, Typography } from '@mui/material'
 
 export interface TableHeaderProps {
   amount?: number
   sx?: SxProps
+  renderSearch?: ReactNode
   onFilterClick?: () => void
 }
 
-export const TableHeader = ({ amount, sx = {}, onFilterClick, children }: PropsWithChildren<TableHeaderProps>) => {
+export const TableHeader = ({ amount, sx = {}, onFilterClick, renderSearch, children }: PropsWithChildren<TableHeaderProps>) => {
   return (
     <Box
       sx={{
@@ -50,22 +50,7 @@ export const TableHeader = ({ amount, sx = {}, onFilterClick, children }: PropsW
           {children}
         </Typography>
       )}
-      <form id={'table-header'}>
-        <FieldInput
-          value={''}
-          name={'search'}
-          placeholder={'Поиск'}
-          sx={{ width: '260px' }}
-          autoComplete={'off'}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </form>
+      {renderSearch}
       {onFilterClick && (
         <Badge
           variant={'dot'}
@@ -80,12 +65,12 @@ export const TableHeader = ({ amount, sx = {}, onFilterClick, children }: PropsW
           }}
         >
           <ButtonIconSquare
-            onClick={() => {}}
+            onClick={onFilterClick}
           >
             <FilterAltTwoTone fontSize={'medium'} />
           </ButtonIconSquare>
-        </Badge>)}
-
+        </Badge>
+      )}
     </Box>
   )
 }

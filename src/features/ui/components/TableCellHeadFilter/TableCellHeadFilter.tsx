@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Box, TableCell, TableSortLabel } from '@mui/material'
+import { Box, TableCell } from '@mui/material'
 
 export const TableCellHeadFilter = ({ children }: PropsWithChildren) => {
   return (
@@ -12,10 +12,10 @@ export const TableCellHeadFilter = ({ children }: PropsWithChildren) => {
         }}
       >
         {children}
-        <TableSortLabel
-          direction={'desc'}
-          active
-        />
+        {/*<TableSortLabel*/}
+        {/*  direction={'desc'}*/}
+        {/*  active*/}
+        {/*/>*/}
       </Box>
     </TableCell>
   )
