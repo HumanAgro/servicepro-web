@@ -1,4 +1,4 @@
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { QueryKey } from '@features/shared/data'
 import { EmployeeProfile } from '@features/shared/types'
 import { useApi } from '@hooks/useApi'
@@ -25,7 +25,7 @@ export const useQueryDrawerEmployee = (id: number | null) => {
 
       return {
         id: data.id,
-        name: getEngineerLabel(data.profile),
+        name: getEmployeeLabel(data.profile),
         role: data.role,
         photo: data.profile.photo ?? undefined,
       }

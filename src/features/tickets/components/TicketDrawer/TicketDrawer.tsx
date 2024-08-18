@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { ButtonIconSquare } from '@components/ButtonIconSquare'
 import { Dropzone } from '@components/Dropzone'
 import { FieldAutocomplete, FieldInput } from '@components/Field'
-import { getEngineerLabel } from '@features/engineers/helpers'
+import { getEmployeeLabel } from '@features/engineers/helpers'
 import { SearchParamsKey } from '@features/shared/data'
 import { TicketChatContainer } from '@features/tickets/components/TicketChatContainer'
 import { TicketChatMessage } from '@features/tickets/components/TicketChatMessage'
@@ -178,7 +178,7 @@ export const TicketDrawer = () => {
       <ContentWrapper>
         <TicketDrawerHeader
           title={data?.title ?? ''}
-          subtitle={getEngineerLabel(data?.customer?.profile ?? {})}
+          subtitle={getEmployeeLabel(data?.customer?.profile ?? {})}
           status={data?.status ?? null}
           loading={isFetching || isPending}
           renderChips={(
@@ -283,7 +283,7 @@ export const TicketDrawer = () => {
                 key={message.uuid}
                 author={members[message.employee_id] ? {
                   id: message.employee_id,
-                  name: getEngineerLabel(members[message.employee_id].profile),
+                  name: getEmployeeLabel(members[message.employee_id].profile),
                   photo: members[message.employee_id].profile.photo ?? undefined,
                   role: members[message.employee_id].role,
                 } : message.employee_id}

@@ -1,16 +1,18 @@
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import TelegramIcon from '@assets/telegram.svg'
+import WhatsAppIcon from '@assets/whatsapp.svg'
 import { PageEntityHeader } from '@components/PageEntityHeader'
 import { EMPTY_VALUE_DASH, PAGINATION_DEFAULT_LIMIT } from '@constants/index'
+import { getEmployeeFullName } from '@features/engineers/helpers'
 import { PanelInfo } from '@features/shared/components/PanelInfo'
 import { QueryKey } from '@features/shared/data'
-import { LabelValue } from '@features/shared/types'
 import { TicketsTable } from '@features/tickets/components/TicketsTable'
 import { VehiclesTable } from '@features/vehicles/components/VehiclesTable'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import { Box, Tab, Typography } from '@mui/material'
+import { Box, Link, Tab, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { WorkSersTasksListParams } from '~/api/servicepro.generated'
 
@@ -74,7 +76,19 @@ export const ClientRoute = () => {
     },
   })
 
-  const info = useMemo((): LabelValue[] => {
+  const employeesQuery = useQuery({
+    queryKey: [QueryKey.ClientEmployees, clientID, organizationID],
+    queryFn: async () => {
+      const { data } = await api.orgSersRelatedOrgsEmployeesList({
+        orgId: organizationID.toString(),
+        relatedId: clientID.toString(),
+      })
+
+      return data
+    },
+  })
+
+  const info = useMemo(() => {
     return [
       {
         label: 'Регион',
@@ -90,10 +104,73 @@ export const ClientRoute = () => {
       },
       {
         label: 'Контакты',
-        value: EMPTY_VALUE_DASH,
+        value: (
+          <Box
+            sx={{
+              display: 'grid',
+              gap: '4px',
+              gridTemplateColumns: '1fr 1.75fr .85fr .4fr',
+            }}
+          >
+            {employeesQuery.data ? employeesQuery.data.map((employee) => (
+              <Fragment
+                key={employee.id}
+              >
+                <Box>
+                  {employee.profile.position || EMPTY_VALUE_DASH}
+                </Box>
+                <Box>
+                  {getEmployeeFullName(employee.profile) || EMPTY_VALUE_DASH}
+                </Box>
+                <Box>
+                  {employee.profile.phone_number || EMPTY_VALUE_DASH}
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    paddingTop: '2px',
+                    gap: '8px',
+                  }}
+                >
+                  {employee.profile.telegram && (
+                    <Link
+                      component={'a'}
+                      href={`https://t.me/${employee.profile.telegram}`}
+                      target={'_blank'}
+                    >
+                      <img
+                        src={TelegramIcon}
+                        alt='telegram'
+                        style={{ display: 'block' }}
+                        width={20}
+                        height={20}
+                      />
+                    </Link>
+                  )}
+                  {employee.profile.whatsapp && (
+                    <Link
+                      component={'a'}
+                      href={`https://wa.me/${employee.profile.whatsapp}`}
+                      target={'_blank'}
+                      sx={{ marginTop: '-3px' }}
+                    >
+                      <img
+                        src={WhatsAppIcon}
+                        alt='telegram'
+                        style={{ display: 'block' }}
+                        width={26}
+                        height={26}
+                      />
+                    </Link>
+                  )}
+                </Box>
+              </Fragment>
+            )) : EMPTY_VALUE_DASH}
+          </Box>
+        ),
       },
     ]
-  }, [data])
+  }, [data, employeesQuery.data])
 
   const requisites = useMemo(() => {
     return [
