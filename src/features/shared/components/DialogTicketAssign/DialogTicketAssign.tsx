@@ -3,8 +3,8 @@ import { EngineerAvatar } from '@features/engineers/components/EngineerAvatar'
 import { getEmployeeLabel } from '@features/engineers/helpers'
 import { TableCellTickets } from '@features/shared/components/TableCellTickets'
 import { QueryKey } from '@features/shared/data'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { useApi } from '@hooks/useApi'
-import { useEmployment } from '@hooks/useEmployment'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { LoadingButton } from '@mui/lab'
@@ -23,7 +23,7 @@ interface DialogTicketAssignProps {
 export const DialogTicketAssign = ({ open, engineer, onClose, onSelectTaskID }: DialogTicketAssignProps) => {
   const { api } = useApi()
   const { organizationID } = useOrganizationID()
-  const { data: employment } = useEmployment()
+  const { employment } = useEmployment()
   const { notify } = useNotify()
 
   const [selectedTaskID, setSelectedTaskID] = useState<number>(0)

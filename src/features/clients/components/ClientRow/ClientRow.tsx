@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { EMPTY_VALUE_DASH } from '@constants/index'
 import { TableCellTickets } from '@features/shared/components/TableCellTickets'
 import { QueryKey } from '@features/shared/data'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { VehicleRecommendationsChips } from '@features/vehicles/components/VehicleRecommendationsChips'
 import { useApi } from '@hooks/useApi'
-import { useEmployment } from '@hooks/useEmployment'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { TableCell, TableRow, Typography } from '@mui/material'
@@ -21,7 +21,7 @@ export const ClientRow = ({ data }: ClientRowProps) => {
   const { organizationID } = useOrganizationID()
   const { notify } = useNotify()
   const { api } = useApi()
-  const { data: employment } = useEmployment()
+  const { employment } = useEmployment()
   const [selectedTaskID, setSelectedTaskID] = useState<number | null>(data.tasks?.[0]?.id ?? null)
   const selectedTask = useMemo(() => data.tasks.find(({ id }) => id === selectedTaskID) ?? null, [selectedTaskID, data.tasks])
 

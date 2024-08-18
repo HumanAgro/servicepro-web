@@ -2,9 +2,9 @@ import { useCallback, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { PAGINATION_DEFAULT_LIMIT } from '@constants/index'
 import { QueryKey } from '@features/shared/data'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { WSData, WSMessagePayloadModel } from '@features/tickets/components/TicketDrawer/types'
 import { useApi } from '@hooks/useApi'
-import { useEmployment } from '@hooks/useEmployment'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -84,7 +84,7 @@ export const useTicketDrawerWebSocket = (ticketID: number | null) => {
 export const useTicketDrawerQuery = (ticketID: number | null, open: boolean) => {
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
-  const { data: employment } = useEmployment()
+  const { employment } = useEmployment()
   const [members, setMembers] = useState<{ [key: number]: { profile: Profile, role: RoleEnum } }>({})
 
   const query = useQuery({

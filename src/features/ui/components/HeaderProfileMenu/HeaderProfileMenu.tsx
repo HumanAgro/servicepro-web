@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { OrganizationInfoDrawerContent } from '@features/organization/components/OrganizationInfoDrawerContent'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import ContextMenu from '@features/ui/components/ContextMenu'
-import { useProfile } from '@hooks/useProfile'
+import { useOrganizationID } from '@hooks/useOrganizationID'
 import { useSignOut } from '@hooks/useSignOut'
 import { BusinessCenter, Info, Logout, Person, Settings } from '@mui/icons-material'
 import {
@@ -28,7 +29,8 @@ const RoleEnumLabel: Record<RoleEnum, string> = {
 }
 
 export const HeaderProfileMenu = () => {
-  const { employment } = useProfile()
+  const { employment } = useEmployment()
+  const { organizationID } = useOrganizationID()
   const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
   const isUserMenuOpen = Boolean(anchorEl)
@@ -160,6 +162,15 @@ export const HeaderProfileMenu = () => {
             </Box>
             <Divider sx={{ marginBottom: '8px' }} />
           </Box>
+          <MenuItem
+            to={`/${organizationID}/profile`}
+            component={Link}
+          >
+            <ListItemIcon>
+              <Person fontSize="small" />
+            </ListItemIcon>
+            Профиль
+          </MenuItem>
           <MenuItem
             to={'/settings'}
             component={Link}

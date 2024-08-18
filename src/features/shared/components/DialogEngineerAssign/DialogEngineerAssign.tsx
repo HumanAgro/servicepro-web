@@ -5,10 +5,10 @@ import { EMPTY_VALUE_DASH } from '@constants/index'
 import { getEmployeeLabel } from '@features/engineers/helpers'
 import { QueryKey } from '@features/shared/data'
 import { getEmployeeRating } from '@features/shared/helpers'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { useEngineersList } from '@features/shared/hooks/useEngineersList'
 import { useQueryEngineers } from '@features/shared/hooks/useQueryEngineers'
 import { useApi } from '@hooks/useApi'
-import { useEmployment } from '@hooks/useEmployment'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material'
@@ -24,7 +24,7 @@ interface DialogEngineerAssignProps {
 export const DialogEngineerAssign = ({ open, selectedTaskID, onClose }: DialogEngineerAssignProps) => {
   const { api } = useApi()
   const { organizationID } = useOrganizationID()
-  const { data: employment } = useEmployment()
+  const { employment } = useEmployment()
   const { data: engineers } = useEngineersList()
   const { notify } = useNotify()
 

@@ -3,9 +3,9 @@ import { ButtonIcon } from '@components/ButtonIcon'
 import { EMPTY_VALUE_DASH } from '@constants/index'
 import { getEmployeeLabel } from '@features/engineers/helpers'
 import { TicketChipStatus } from '@features/shared/components/TicketChipStatus/TicketChipStatus'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { useOpenTicketDrawer } from '@features/tickets/hooks/useOpenTicketDrawer'
 import { Tooltip } from '@features/ui/components/Tooltip'
-import { useProfile } from '@hooks/useProfile'
 import { ArrowDropDown, CheckCircle, ManageAccounts, Visibility } from '@mui/icons-material'
 import { Box, Button, Menu, MenuItem } from '@mui/material'
 import { SerWorkTaskVerbose, WorkTaskShort, WorkTaskShortWithExecutor } from '~/api/servicepro.generated'
@@ -23,7 +23,7 @@ export interface TableCellTicketsProps {
 
 export const TableCellTickets = ({ selectedTaskID, tasks, disableView = false, showClient = false, width = '290px', onChangeSelectedTaskID, onClickAssign, onClickAccept }: TableCellTicketsProps) => {
   const { openTicketDrawer } = useOpenTicketDrawer()
-  const { employment } = useProfile()
+  const { employment } = useEmployment()
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
   const open = !!anchorEl
   const selectedTask = useMemo<WorkTaskShort | SerWorkTaskVerbose | WorkTaskShortWithExecutor | null>(() => tasks.find(({ id }) => id === selectedTaskID) ?? tasks[0] ?? null, [selectedTaskID, tasks])

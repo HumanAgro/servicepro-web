@@ -9,14 +9,12 @@ export const useQueryEngineers = () => {
 
   return useQuery({
     queryKey: [QueryKey.Engineers, organizationID],
-    queryFn: async ()=> {
+    queryFn: async () => {
       const { data } = await api.workSersEmployeesList({
         orgId: organizationID.toString(),
         role: 'engineer',
       })
       return data ?? []
     },
-    refetchOnWindowFocus: false,
   })
-
 }

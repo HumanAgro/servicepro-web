@@ -18,7 +18,7 @@ export const FieldLabel = ({ htmlFor, label, required = false, onClick }: FieldL
         variant={'body2'}
         sx={{
           color: theme.palette.grey['800'],
-          marginBottom: 1,
+          marginBottom: '6px',
         }}
       >
         {label}

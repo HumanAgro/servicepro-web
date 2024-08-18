@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import logoVertical from '@assets/logo-vertical.png'
 import { FooterCopyright } from '@components/FooterCopyright'
 import { theme } from '@data/theme'
-import { useProfile } from '@hooks/useProfile'
+import { useProfile } from '@features/shared/hooks/useProfile'
 import {
   Alert,
   Avatar,
@@ -19,9 +19,9 @@ import {
 
 export const OrganizationRoute = () => {
   const navigate = useNavigate()
-  const { query: { data: profile, isFetching, isSuccess }, setEmployment } = useProfile((data) => {
+
+  const { data: profile, isFetching, isSuccess } = useProfile((data) => {
     if (data.employments.length === 1) {
-      setEmployment(data.employments[0] ?? null)
       navigate(`/${data.employments[0].organization.id}/tickets`)
     }
   })

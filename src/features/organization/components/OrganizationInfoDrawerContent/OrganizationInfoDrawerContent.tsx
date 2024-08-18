@@ -1,9 +1,9 @@
 import { DrawerContent } from '@components/DrawerContent'
 import { FieldLabelValue } from '@components/FieldLabelValue'
 import { EMPTY_VALUE_DASH } from '@constants/index'
+import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
-import { useProfile } from '@hooks/useProfile'
 import { useSignOut } from '@hooks/useSignOut'
 import { Logout } from '@mui/icons-material'
 import { Box, Button } from '@mui/material'
@@ -16,7 +16,7 @@ interface OrganizationInfoDrawerContentProps {
 export const OrganizationInfoDrawerContent = ({ onClose }: OrganizationInfoDrawerContentProps) => {
   const { api } = useApi()
   const { organizationID } = useOrganizationID()
-  const { employment } = useProfile()
+  const { employment } = useEmployment()
   const { signOut } = useSignOut()
 
   const query = useQuery({
