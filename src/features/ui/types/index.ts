@@ -14,4 +14,6 @@ export type ReadonlyKeys<T> = {
 
 export const rr = <T, K, R>(fn: (data: T, ...args: K[]) => R) => fn as (data: Writable<T>, ...args: K[]) => R
 
+export const rr1 = <T, K, R, M>(fn: (first: M, data: T, ...args: K[]) => R) => fn as (first: M, data: Writable<T>, ...args: K[]) => R
+
 export const rr2 = <T, K, R, M, N>(fn: (first: M, second: N, data: T, ...args: K[]) => R) => fn as (first: M, second: N, data: Writable<T>, ...args: K[]) => R
