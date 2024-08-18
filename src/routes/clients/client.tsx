@@ -92,11 +92,11 @@ export const ClientRoute = () => {
     return [
       {
         label: 'Регион',
-        value: data?.requisites?.legal_address?.region?.local_name ?? data?.requisites?.physical_address?.region?.local_name ?? data?.requisites?.postal_address?.region?.local_name ?? EMPTY_VALUE_DASH,
+        value: data?.requisites?.physical_address?.region?.local_name || EMPTY_VALUE_DASH,
       },
       {
         label: 'Район',
-        value: data?.requisites?.legal_address?.value ?? data?.requisites?.physical_address?.value ?? data?.requisites?.postal_address?.value ?? EMPTY_VALUE_DASH,
+        value: data?.requisites?.physical_address?.district || EMPTY_VALUE_DASH,
       },
       {
         label: 'Фактический адрес',

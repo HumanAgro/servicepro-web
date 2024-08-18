@@ -75,10 +75,10 @@ export const ClientRow = ({ data }: ClientRowProps) => {
         </Typography>
       </TableCell>
       <TableCell>
-        {data.requisites?.legal_address?.region?.local_name ?? data.requisites?.physical_address?.region?.local_name ?? data.requisites?.postal_address?.region?.local_name ?? EMPTY_VALUE_DASH}
+        {data.requisites?.physical_address?.region?.local_name || EMPTY_VALUE_DASH}
       </TableCell>
       <TableCell>
-        {data.requisites?.legal_address?.value ?? data.requisites?.physical_address?.value ?? data.requisites?.postal_address?.value ?? EMPTY_VALUE_DASH}
+        {data.requisites?.physical_address?.district || EMPTY_VALUE_DASH}
       </TableCell>
       <TableCell
         onClick={(event) => event.stopPropagation()}
