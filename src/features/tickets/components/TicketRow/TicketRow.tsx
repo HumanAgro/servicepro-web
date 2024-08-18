@@ -66,10 +66,10 @@ export const TicketRow = ({ ticket, onSelect }: TicketRowProps) => {
           </Box>
         </TableCell>
         <TableCell>
-          {requisites?.legal_address?.region?.local_name ?? requisites?.physical_address?.region?.local_name ?? requisites?.postal_address?.region?.local_name ?? EMPTY_VALUE_DASH}
+          {requisites?.physical_address?.region?.local_name ?? EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
-          {requisites?.legal_address?.value ?? requisites?.physical_address?.value ?? requisites?.postal_address?.value ?? EMPTY_VALUE_DASH}
+          {requisites?.physical_address?.district || EMPTY_VALUE_DASH}
         </TableCell>
         <TableCell>
           {vehicle?.model.brand.name || EMPTY_VALUE_DASH}
