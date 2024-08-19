@@ -16,6 +16,5 @@ export const getTicketsPageFiltersDefault = (): TicketsPageFilters => ({
   district: '',
   brand: '',
   model: '',
-  equipment: '',
   status: [],
 })
