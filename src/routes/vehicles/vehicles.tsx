@@ -98,7 +98,7 @@ export const VehiclesRoute = () => {
           },
           {
             value: filters.equipment,
-            label: TicketsPageFiltersLabels['equipment'],
+            label: 'Тип',
             onDelete: () => changeFilters({ equipment: '' }),
           },
         ]}
