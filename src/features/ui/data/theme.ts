@@ -62,6 +62,7 @@ export const theme = createTheme({
           paddingRight: '4px',
           textTransform: 'uppercase',
           fontSize: '11px',
+          lineHeight: 1.5,
         },
       },
     },

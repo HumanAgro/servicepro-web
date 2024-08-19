@@ -1,6 +1,6 @@
 import { TableWrapper } from '@components/TableWrapper/TableWrapper'
 import { VehicleRow } from '@features/vehicles/components/VehicleRow'
-import { SxProps, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
+import { SxProps, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { WorkVehicle } from '~/api/servicepro.generated'
 
 interface VehiclesTableProps {
@@ -24,91 +24,51 @@ export const VehiclesTable = ({ data, isSuccess, sx }: VehiclesTableProps) => {
               size={'small'}
             >
               Клиент
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Регион
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Район
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Бренд
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Модель
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Тип
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Заводской номер
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Наработка
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Заявки
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
             >
               Инженер
-              <TableSortLabel
-                direction={'desc'}
-                active
-              />
             </TableCell>
             <TableCell
               size={'small'}
