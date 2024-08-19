@@ -2,6 +2,7 @@ import { ReadyState } from 'react-use-websocket'
 import { RoleEnum } from '~/api/servicepro.generated'
 
 export enum QueryKey {
+  Brands = 'brands',
   Clients = 'clients',
   Client = 'client',
   ClientVehicles = 'client-vehicles',
@@ -25,6 +26,7 @@ export enum QueryKey {
   VehicleRecommendations = 'vehicle-recommendations',
   VehicleTickets = 'vehicle-tickets',
   OrganizationEmployees = 'organization-employees',
+  Models = 'models',
   Profile = 'profile',
   RelatedOrgs = 'related-orgs',
   Regions = 'regions',

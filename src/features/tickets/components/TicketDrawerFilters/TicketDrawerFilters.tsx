@@ -1,5 +1,7 @@
 import { DrawerFilters } from '@components/DrawerFilters'
 import { FieldAutocompleteMultiple, FieldInput } from '@components/Field'
+import { FieldAutocompleteBrand } from '@features/shared/components/FieldAutocompleteBrand'
+import { FieldAutocompleteModel } from '@features/shared/components/FieldAutocompleteModel'
 import { FieldAutocompleteRegion } from '@features/shared/components/FieldAutocompleteRegion'
 import { StatusEnumLabel, TicketsStatusOptions } from '@features/tickets/data'
 import { TicketsPageFilters } from '@features/tickets/types'
@@ -37,19 +39,14 @@ export const TicketDrawerFilters = ({ open, filters, onClose, onChange }: Ticket
         placeholder={'Введите район'}
         onChange={(event) => handleChange({ district: event.target.value })}
       />
-      <FieldInput
+      <FieldAutocompleteBrand
         value={filters.brand}
-        name={'brand'}
-        label={'Бренд техники'}
-        placeholder={'Введите бренд техники'}
-        onChange={(event) => handleChange({ brand: event.target.value })}
+        onChange={(brand) => handleChange({ brand })}
       />
-      <FieldInput
+      <FieldAutocompleteModel
         value={filters.model}
-        name={'model'}
-        label={'Модель техники'}
-        placeholder={'Введите модель техники'}
-        onChange={(event) => handleChange({ model: event.target.value })}
+        brand={filters.brand}
+        onChange={(model) => handleChange({ model })}
       />
       <FieldAutocompleteMultiple
         name={'status'}
