@@ -1,5 +1,6 @@
 import { DrawerFilters } from '@components/DrawerFilters'
 import { FieldAutocompleteMultiple, FieldInput } from '@components/Field'
+import { FieldAutocompleteRegion } from '@features/shared/components/FieldAutocompleteRegion'
 import { StatusEnumLabel, TicketsStatusOptions } from '@features/tickets/data'
 import { TicketsPageFilters } from '@features/tickets/types'
 import { StatusEnum } from '~/api/servicepro.generated'
@@ -25,12 +26,9 @@ export const TicketDrawerFilters = ({ open, filters, onClose, onChange }: Ticket
       open={open}
       onClose={handleClose}
     >
-      <FieldInput
+      <FieldAutocompleteRegion
         value={filters.region}
-        name={'region'}
-        label={'Регион'}
-        placeholder={'Введите регион'}
-        onChange={(event) => handleChange({ region: event.target.value })}
+        onChange={(region) => handleChange({ region })}
       />
       <FieldInput
         value={filters.district}

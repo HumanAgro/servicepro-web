@@ -27,6 +27,7 @@ export enum QueryKey {
   OrganizationEmployees = 'organization-employees',
   Profile = 'profile',
   RelatedOrgs = 'related-orgs',
+  Regions = 'regions',
 }
 
 export enum SearchParamsKey {

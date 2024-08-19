@@ -82,7 +82,7 @@ export const FieldAutocomplete = forwardRef(<T extends FieldAutocompleteCommonVa
           <TextField
             {...params}
             size={'small'}
-            placeholder={placeholder ?? 'Выбрать...'}
+            placeholder={placeholder ?? 'Выберите опцию'}
             error={error}
             label={labelInside ? label : undefined}
             inputRef={ref}

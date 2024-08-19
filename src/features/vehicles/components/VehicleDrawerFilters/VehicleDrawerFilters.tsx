@@ -1,5 +1,6 @@
 import { DrawerFilters } from '@components/DrawerFilters'
 import { FieldInput } from '@components/Field'
+import { FieldAutocompleteRegion } from '@features/shared/components/FieldAutocompleteRegion'
 import { VehiclesPageFilters } from '@features/vehicles/types'
 
 interface VehicleDrawerFiltersProps {
@@ -23,12 +24,9 @@ export const VehicleDrawerFilters = ({ open, filters, onClose, onChange }: Vehic
       open={open}
       onClose={handleClose}
     >
-      <FieldInput
+      <FieldAutocompleteRegion
         value={filters.region}
-        name={'region'}
-        label={'Регион'}
-        placeholder={'Введите регион'}
-        onChange={(event) => handleChange({ region: event.target.value })}
+        onChange={(region) => handleChange({ region })}
       />
       <FieldInput
         value={filters.district}

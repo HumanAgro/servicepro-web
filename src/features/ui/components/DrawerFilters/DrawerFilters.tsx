@@ -12,7 +12,6 @@ export const DrawerFilters = ({ open, onClose, children }: PropsWithChildren<Dra
     <Drawer
       open={open}
       anchor={'right'}
-      disableScrollLock
       onClose={onClose}
     >
       <DrawerContent
