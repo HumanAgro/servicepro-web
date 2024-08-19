@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { FieldInputSearch } from '@components/FieldInputSearch'
 import { FiltersChips } from '@components/FiltersChips'
 import { InformerNoResults } from '@components/InformerNoResults'
@@ -8,7 +8,6 @@ import { QueryKey } from '@features/shared/data'
 import { getFiltersFilledAmount } from '@features/shared/helpers'
 import { TicketsPageFiltersLabels } from '@features/tickets/data'
 import { getTicketsPageFiltersDefault } from '@features/tickets/helpers'
-import { TicketsPageFilters } from '@features/tickets/types'
 import { VehicleDrawerFilters } from '@features/vehicles/components/VehicleDrawerFilters'
 import { VehiclesTable } from '@features/vehicles/components/VehiclesTable'
 import { getVehiclesPageFiltersDefault } from '@features/vehicles/helpers'
@@ -16,7 +15,7 @@ import { VehiclesPageFilters } from '@features/vehicles/types'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { usePageTitle } from '@hooks/usePageTitle'
-import { Button, Chip } from '@mui/material'
+import { Button } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 
@@ -71,28 +70,34 @@ export const VehiclesRoute = () => {
       </TableHeader>
       <FiltersChips
         filled={filtersFilled}
+        chips={[
+          {
+            value: filters.search,
+            onDelete: () => changeFilters({ search: '' }),
+          },
+          {
+            value: filters.region,
+            label: TicketsPageFiltersLabels['region'],
+            onDelete: () => changeFilters({ region: '' }),
+          },
+          {
+            value: filters.district,
+            label: TicketsPageFiltersLabels['district'],
+            onDelete: () => changeFilters({ district: '' }),
+          },
+          {
+            value: filters.brand,
+            label: TicketsPageFiltersLabels['brand'],
+            onDelete: () => changeFilters({ brand: '' }),
+          },
+          {
+            value: filters.model,
+            label: TicketsPageFiltersLabels['model'],
+            onDelete: () => changeFilters({ model: '' }),
+          },
+        ]}
         onClear={() => changeFilters(getTicketsPageFiltersDefault())}
-      >
-        {(Object.entries(filters) as [keyof TicketsPageFilters, string | unknown[]][]).map(([key, value]) => (
-          <Fragment key={key}>
-            {Array.isArray(value) ? (
-              <>
-
-              </>
-            ) : (
-              <>
-                {value && (
-                  <Chip
-                    size={'small'}
-                    label={`${TicketsPageFiltersLabels[key] ? `${TicketsPageFiltersLabels[key]}: ` : ''}"${value}"`}
-                    onDelete={() => changeFilters({ [key]: '' })}
-                  />
-                )}
-              </>
-            )}
-          </Fragment>
-        ))}
-      </FiltersChips>
+      />
       {!isFetching && !data.length && (
         <InformerNoResults
           title={'Техника не найдена'}

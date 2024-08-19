@@ -13,7 +13,6 @@ export const DrawerFilters = ({ open, onClose, children }: PropsWithChildren<Dra
       open={open}
       anchor={'right'}
       disableScrollLock
-      hideBackdrop
       onClose={onClose}
     >
       <DrawerContent

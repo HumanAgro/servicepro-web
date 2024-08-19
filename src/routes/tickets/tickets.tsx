@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { FieldInputSearch } from '@components/FieldInputSearch'
 import { FiltersChips } from '@components/FiltersChips'
 import { TableHeader } from '@components/TableHeader'
@@ -14,7 +14,7 @@ import { TaskVerbose, TicketsPageFilters } from '@features/tickets/types'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
 import { usePageTitle } from '@hooks/usePageTitle'
-import { Chip, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 import { WorkSersTasksVerboseListParams, WorkTaskGeo } from '~/api/servicepro.generated'
@@ -131,35 +131,39 @@ export const TicketsRoute = () => {
         </TableHeader>
         <FiltersChips
           filled={filtersFilled}
+          chips={[
+            {
+              value: filters.search,
+              onDelete: () => changeFilters({ search: '' }),
+            },
+            {
+              value: filters.region,
+              label: TicketsPageFiltersLabels['region'],
+              onDelete: () => changeFilters({ region: '' }),
+            },
+            {
+              value: filters.district,
+              label: TicketsPageFiltersLabels['district'],
+              onDelete: () => changeFilters({ district: '' }),
+            },
+            {
+              value: filters.brand,
+              label: TicketsPageFiltersLabels['brand'],
+              onDelete: () => changeFilters({ brand: '' }),
+            },
+            {
+              value: filters.model,
+              label: TicketsPageFiltersLabels['model'],
+              onDelete: () => changeFilters({ model: '' }),
+            },
+            ...filters.status.map((status) => ({
+              value: StatusEnumLabel[status],
+              label: TicketsPageFiltersLabels['status'],
+              onDelete: () => changeFilters({ status: filters.status.filter((s) => s !== status) }),
+            })),
+          ]}
           onClear={() => changeFilters(getTicketsPageFiltersDefault())}
-        >
-          {(Object.entries(filters) as [keyof TicketsPageFilters, string | unknown[]][]).map(([key, value]) => (
-            <Fragment key={key}>
-              {Array.isArray(value) ? (
-                <>
-                  {key === 'status' && filters.status.map((status) => (
-                    <Chip
-                      key={status}
-                      size={'small'}
-                      label={`${TicketsPageFiltersLabels[key]}: "${StatusEnumLabel[status]}"`}
-                      onDelete={() => changeFilters({ status: filters.status.filter((s) => s !== status) })}
-                    />
-                  ))}
-                </>
-              ) : (
-                <>
-                  {value && (
-                    <Chip
-                      size={'small'}
-                      label={`${TicketsPageFiltersLabels[key] ? `${TicketsPageFiltersLabels[key]}: ` : ''}"${value}"`}
-                      onDelete={() => changeFilters({ [key]: '' })}
-                    />
-                  )}
-                </>
-              )}
-            </Fragment>
-          ))}
-        </FiltersChips>
+        />
         <TicketsTable
           page={page}
           count={count}

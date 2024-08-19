@@ -1,12 +1,14 @@
-import { PropsWithChildren } from 'react'
+import { Fragment, PropsWithChildren } from 'react'
+import { FilterChipData } from '@components/FiltersChips/types'
 import { Box, Chip } from '@mui/material'
 
 interface FiltersChipsProps {
+  chips: FilterChipData[]
   filled: number
   onClear: () => void
 }
 
-export const FiltersChips = ({ filled, onClear, children }: PropsWithChildren<FiltersChipsProps>) => {
+export const FiltersChips = ({ chips, filled, onClear, children }: PropsWithChildren<FiltersChipsProps>) => {
   return (
     <>
       {filled > 0 && (
@@ -18,6 +20,17 @@ export const FiltersChips = ({ filled, onClear, children }: PropsWithChildren<Fi
             marginTop: '12px',
           }}
         >
+          {chips.map((chip, index) => (
+            <Fragment key={`${chip.value}-${index}`}>
+              {chip.value && (
+                <Chip
+                  size={'small'}
+                  label={`${chip.label ? `${chip.label}: ` : ''}"${chip.value}"`}
+                  onDelete={chip.onDelete}
+                />
+              )}
+            </Fragment>
+          ))}
           {children}
           {filled > 1 && (
             <Chip

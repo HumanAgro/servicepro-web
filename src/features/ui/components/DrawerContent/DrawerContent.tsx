@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react'
+import { forwardRef, PropsWithChildren, ReactNode, Ref } from 'react'
 import { DrawerHeader } from '@components/DrawerHeader'
 import { DrawerFooter } from '@features/ui/components/DrawerFooter'
 import { Box, SxProps } from '@mui/material'
@@ -11,9 +11,10 @@ interface DrawerContentProps {
   onClose: () => void
 }
 
-export const DrawerContent = ({ title, sx, innerSx, renderFooter, onClose, children }: PropsWithChildren<DrawerContentProps>) => {
+export const DrawerContent = forwardRef(({ title, sx, innerSx, renderFooter, onClose, children }: PropsWithChildren<DrawerContentProps>, ref: Ref<HTMLDivElement>) => {
   return (
     <Box
+      ref={ref}
       sx={{
         flexGrow: 1,
         display: 'grid',
@@ -44,4 +45,4 @@ export const DrawerContent = ({ title, sx, innerSx, renderFooter, onClose, child
       )}
     </Box>
   )
-}
+})
