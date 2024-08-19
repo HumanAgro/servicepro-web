@@ -3,13 +3,14 @@ import useInfiniteScroll from 'react-infinite-scroll-hook'
 import { FieldInputSearch } from '@components/FieldInputSearch'
 import { InformerNoResults } from '@components/InformerNoResults'
 import { TableHeader } from '@components/TableHeader'
+import { TableRowSentry } from '@components/TableRowSentry'
 import { TableWrapper } from '@components/TableWrapper/TableWrapper'
 import { DEBOUNCE_DELAY_DEFAULT, PAGINATION_DEFAULT_LIMIT } from '@constants/index'
 import { ClientRow } from '@features/clients/components/ClientRow'
 import { QueryKey } from '@features/shared/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
-import { Box, Button, CircularProgress, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 
@@ -112,40 +113,21 @@ export const ClientsRoute = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {status === 'success' && (
-                <>
-                  {data.pages.map((page, index) => (
-                    <Fragment key={index}>
-                      {page.map((client) => (
-                        <ClientRow
-                          key={client.id}
-                          data={client}
-                        />
-                      ))}
-                    </Fragment>
+              {status === 'success' && data.pages.map((page, index) => (
+                <Fragment key={index}>
+                  {page.map((client) => (
+                    <ClientRow
+                      key={client.id}
+                      data={client}
+                    />
                   ))}
-                </>
-              )}
+                </Fragment>
+              ))}
               {(isFetching || isFetchingNextPage || hasNextPage) && (
-                <TableRow
+                <TableRowSentry
                   ref={sentryRef}
-                >
-                  <TableCell
-                    colSpan={7}
-                  >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <CircularProgress
-                        color={'info'}
-                        size={36}
-                      />
-                    </Box>
-                  </TableCell>
-                </TableRow>
+                  colspan={7}
+                />
               )}
             </TableBody>
           </Table>

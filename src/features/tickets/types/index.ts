@@ -5,7 +5,7 @@ export interface TaskVerbose {
   geo: WorkTaskGeo | undefined
 }
 
-export interface TicketsPageFilters {
+export type TicketsPageFilters = {
   search: string
   region: string
   district: string

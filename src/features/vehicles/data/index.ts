@@ -36,4 +36,3 @@ export const RuntimeUnitEnumLabelVerbose: Record<RuntimeUnitEnum, string> = {
   [RuntimeUnitEnum.Km]: 'Километры',
   [RuntimeUnitEnum.Mh]: 'Моточасы',
 }
-

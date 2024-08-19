@@ -3,12 +3,12 @@ import { FieldInputSearch } from '@components/FieldInputSearch'
 import { TableHeader } from '@components/TableHeader'
 import { DEBOUNCE_DELAY_DEFAULT, MAP_FLY_DURATION, PAGINATION_DEFAULT_LIMIT } from '@constants/index'
 import { QueryKey } from '@features/shared/data'
-import { getGeoInfoBounds } from '@features/shared/helpers'
+import { getFiltersFilledAmount, getGeoInfoBounds } from '@features/shared/helpers'
 import { Map, MapRef } from '@features/tickets/components/Map'
 import { TicketDrawerFilters } from '@features/tickets/components/TicketDrawerFilters'
 import { TicketsTable } from '@features/tickets/components/TicketsTable'
 import { StatusEnumLabel, TicketsPageFiltersLabels } from '@features/tickets/data'
-import { getTicketsPageFiltersDefault, getTicketsPageFiltersFilledAmount } from '@features/tickets/helpers'
+import { getTicketsPageFiltersDefault } from '@features/tickets/helpers'
 import { TaskVerbose, TicketsPageFilters } from '@features/tickets/types'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
@@ -34,7 +34,7 @@ export const TicketsRoute = () => {
 
   const [filters, setFilters] = useState<TicketsPageFilters>(getTicketsPageFiltersDefault)
   const filtersDebounced = useDebounce(filters, DEBOUNCE_DELAY_DEFAULT)
-  const filtersFilledAmount = useMemo(() => getTicketsPageFiltersFilledAmount(filters), [filters])
+  const filtersFilled = useMemo(() => getFiltersFilledAmount(filters), [filters])
 
   const { data, isSuccess } = useQuery({
     queryKey: [QueryKey.TicketsGeos, organizationID, page, filtersDebounced],
@@ -112,6 +112,7 @@ export const TicketsRoute = () => {
         <TableHeader
           sx={{ marginTop: '8px' }}
           amount={count}
+          filtered={filtersFilled > 1}
           renderSearch={(
             <FieldInputSearch
               value={filters.search}
@@ -123,7 +124,7 @@ export const TicketsRoute = () => {
         >
           Заявки
         </TableHeader>
-        {filtersFilledAmount > 0 && (
+        {filtersFilled > 0 && (
           <Box
             sx={{
               display: 'flex',
@@ -158,7 +159,7 @@ export const TicketsRoute = () => {
                 )}
               </Fragment>
             ))}
-            {filtersFilledAmount > 1 && (
+            {filtersFilled > 1 && (
               <Chip
                 variant={'outlined'}
                 size={'small'}

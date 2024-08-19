@@ -38,7 +38,7 @@ export const InformerNoResults = ({ title, subtitle, filtered = false, actions, 
       >
         {filtered ? 'Попробуйте изменить или очистить параметры поиска' : subtitle}
       </Typography>
-      {actions && (
+      {actions && filtered && (
         <Box
           sx={{
             display: 'flex',
