@@ -8,10 +8,3 @@ export const getAvailableStatusOptions = (status: StatusEnum): FieldAutocomplete
     label: StatusEnumLabel[value],
   }))
 }
-
-export const getStatusOptions = (): FieldAutocompleteCommonValue[] => {
-  return Object.values(StatusEnum).filter((status) => ![StatusEnum.Search, StatusEnum.Processing, StatusEnum.Wait].some((s) => s === status)).map((status) => ({
-    value: status,
-    label: StatusEnumLabel[status],
-  }))
-}

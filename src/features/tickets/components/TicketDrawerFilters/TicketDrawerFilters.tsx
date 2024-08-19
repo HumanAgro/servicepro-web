@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { DrawerContent } from '@components/DrawerContent'
 import { FieldAutocompleteMultiple, FieldInput } from '@components/Field'
-import { StatusEnumLabel } from '@features/tickets/data'
-import { getStatusOptions } from '@features/tickets/helpers'
+import { StatusEnumLabel, TicketsStatusOptions } from '@features/tickets/data'
 import { TicketsPageFilters } from '@features/tickets/types'
-import { Box, Drawer } from '@mui/material'
+import { Box, Button, Drawer } from '@mui/material'
 import { clone } from 'ramda'
 import { StatusEnum } from '~/api/servicepro.generated'
 
@@ -47,6 +46,16 @@ export const TicketDrawerFilters = ({ open, filters: filtersProp, onClose, onCha
           width: '450px',
           minWidth: '450px',
         }}
+        renderFooter={(
+          <Button
+            variant={'outlined'}
+            color={'info'}
+            disableElevation
+            onClick={handleClose}
+          >
+            Закрыть
+          </Button>
+        )}
         onClose={handleClose}
       >
         <Box
@@ -88,7 +97,7 @@ export const TicketDrawerFilters = ({ open, filters: filtersProp, onClose, onCha
             name={'status'}
             label={'Статус заявки'}
             value={filters.status.map((status) => ({ value: status, label: StatusEnumLabel[status] }))}
-            options={getStatusOptions()}
+            options={TicketsStatusOptions}
             onChange={(data) => handleChange({ status: data.map(({ value }) => value as StatusEnum) })}
           />
         </Box>

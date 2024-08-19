@@ -1,4 +1,5 @@
 import { FieldAutocompleteCommonValue } from '@components/Field/components/FieldAutocomplete/types'
+import { TicketsPageFilters } from '@features/tickets/types'
 import { StatusEnum } from '~/api/servicepro.generated'
 
 export enum TicketsTab {
@@ -86,3 +87,17 @@ export const ticketMapUpdateTimeOptions: FieldAutocompleteCommonValue<TicketMapU
     label: '5 минут',
   },
 ]
+
+export const TicketsStatusOptions = Object.values(StatusEnum).filter((status) => ![StatusEnum.Search, StatusEnum.Processing, StatusEnum.Wait].some((s) => s === status)).map((status) => ({
+  value: status,
+  label: StatusEnumLabel[status],
+}))
+
+export const TicketsPageFiltersLabels: Record<keyof TicketsPageFilters, string> = {
+  search: '',
+  region: 'Регион',
+  district: 'Район',
+  brand: 'Бренд',
+  model: 'Модель',
+  status: 'Статус заявки',
+}

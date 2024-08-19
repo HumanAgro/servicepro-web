@@ -17,3 +17,4 @@ export const SYMBOL_QUOTATION_LEFT = '«'
 export const SYMBOL_QUOTATION_RIGHT = '»'
 export const SYMBOL_DIVIDER_DOT = '•'
 export const MAP_FLY_DURATION = 0.25
+export const DEBOUNCE_DELAY_DEFAULT = 600
