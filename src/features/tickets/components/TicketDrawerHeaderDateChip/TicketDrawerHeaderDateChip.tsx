@@ -55,7 +55,7 @@ export const TicketDrawerHeaderDateChip = ({ ticketID, status, authorization, pl
         taskId: ticketID!,
         authorization,
       }, {
-        text: `Предложена новая дата планируемого начала: ${format(newDate, DATE_FORMAT_TIME_BEHIND)}`,
+        text: `Установлена новая дата планируемого начала: ${format(newDate, DATE_FORMAT_TIME_BEHIND)}`,
         status: StatusEnum.Approval,
         edits: {
           plan_start_date: newDate.toISOString(),
