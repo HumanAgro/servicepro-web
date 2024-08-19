@@ -88,7 +88,7 @@ export const ticketMapUpdateTimeOptions: FieldAutocompleteCommonValue<TicketMapU
   },
 ]
 
-export const TicketsStatusOptions = Object.values(StatusEnum).filter((status) => ![StatusEnum.Search, StatusEnum.Processing, StatusEnum.Wait].some((s) => s === status)).map((status) => ({
+export const TicketsStatusOptions = Object.values(StatusEnum).filter((status) => ![StatusEnum.Search, StatusEnum.Processing, StatusEnum.OnWay].some((s) => s === status)).map((status) => ({
   value: status,
   label: StatusEnumLabel[status],
 }))
