@@ -13,6 +13,7 @@ import { getTicketsPageFiltersDefault } from '@features/tickets/helpers'
 import { TaskVerbose, TicketsPageFilters } from '@features/tickets/types'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { Chip, Container } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
@@ -20,8 +21,11 @@ import { WorkSersTasksVerboseListParams, WorkTaskGeo } from '~/api/servicepro.ge
 import { useMapStore } from '~/store/useMapStore'
 
 export const TicketsRoute = () => {
+  usePageTitle('Заявки')
+
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
+
   const updateTime = useMapStore((state) => state.updateTime)
   const setUpdatedTime = useMapStore((state) => state.setUpdatedTime)
 

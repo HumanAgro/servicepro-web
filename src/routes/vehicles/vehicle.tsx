@@ -14,6 +14,7 @@ import { VehicleTabRuntime } from '@features/vehicles/components/VehicleTabRunti
 import { RuntimeUnitEnumLabel } from '@features/vehicles/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Tab } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
@@ -51,6 +52,8 @@ export const VehicleRoute = () => {
       return data
     },
   })
+
+  usePageTitle('Данные техники')
 
   const info = useMemo((): LabelValue[] => {
     return [
@@ -111,7 +114,7 @@ export const VehicleRoute = () => {
         }}
       >
         <PageEntityHeader
-          title={'Данные по технике'}
+          title={'Данные техники'}
           isFetching={false}
         />
         <Box

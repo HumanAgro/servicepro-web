@@ -15,11 +15,14 @@ import { getVehiclesPageFiltersDefault } from '@features/vehicles/helpers'
 import { VehiclesPageFilters } from '@features/vehicles/types'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { Button, Chip } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 
 export const VehiclesRoute = () => {
+  usePageTitle('Техника')
+
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
 

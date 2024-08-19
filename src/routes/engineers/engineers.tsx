@@ -6,10 +6,13 @@ import { TableWrapper } from '@components/TableWrapper/TableWrapper'
 import { DEBOUNCE_DELAY_DEFAULT } from '@constants/index'
 import { EngineerRow } from '@features/engineers/components/EngineerRow'
 import { useEngineersTasksList } from '@features/shared/hooks/useEngineersTasksList'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useDebounce } from '@uidotdev/usehooks'
 
 export const EngineersRoute = () => {
+  usePageTitle('Инженеры')
+
   const [query, setQuery] = useState('')
   const queryDebounced = useDebounce(query, DEBOUNCE_DELAY_DEFAULT)
 

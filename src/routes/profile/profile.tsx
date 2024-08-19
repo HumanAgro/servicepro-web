@@ -9,12 +9,15 @@ import { toBase64 } from '@helpers/index'
 import { useApi } from '@hooks/useApi'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { Edit, Person } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { Avatar, Box, Button, Divider, Typography } from '@mui/material'
 import { queryClient } from '~/api'
 
 export const ProfileRoute = () => {
+  usePageTitle('Профиль')
+
   const { api } = useApi()
   const { organizationID } = useOrganizationID()
   const { notify } = useNotify()

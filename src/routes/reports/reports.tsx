@@ -5,12 +5,15 @@ import { rr1 } from '@features/ui/types'
 import { useApi } from '@hooks/useApi'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { LoadingButton } from '@mui/lab'
 import { Alert, Box, Button, Typography } from '@mui/material'
 import { format } from 'date-fns'
 import { Report } from '~/api/servicepro.generated'
 
 export const ReportsRoute = () => {
+  usePageTitle('Отчеты')
+
   const { api } = useApi()
   const { organizationID } = useOrganizationID()
   const { notify } = useNotify()

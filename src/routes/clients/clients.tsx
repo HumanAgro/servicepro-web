@@ -10,11 +10,14 @@ import { ClientRow } from '@features/clients/components/ClientRow'
 import { QueryKey } from '@features/shared/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 
 export const ClientsRoute = () => {
+  usePageTitle('Клиенты')
+
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
 

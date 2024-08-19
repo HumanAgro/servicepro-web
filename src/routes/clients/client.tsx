@@ -11,6 +11,7 @@ import { TicketsTable } from '@features/tickets/components/TicketsTable'
 import { VehiclesTable } from '@features/vehicles/components/VehiclesTable'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
+import { usePageTitle } from '@hooks/usePageTitle'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Link, Tab, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
@@ -44,6 +45,8 @@ export const ClientRoute = () => {
       return data
     },
   })
+
+  usePageTitle('Данные клиента')
 
   const ticketsQuery = useQuery({
     queryKey: [QueryKey.ClientTickets, clientID, ticketsPage, organizationID],

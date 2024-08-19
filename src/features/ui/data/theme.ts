@@ -61,6 +61,7 @@ export const theme = createTheme({
         head: {
           paddingRight: '4px',
           textTransform: 'uppercase',
+          verticalAlign: 'top',
           fontSize: '11px',
           lineHeight: 1.5,
         },
