@@ -1,18 +1,16 @@
 import { DrawerFilters } from '@components/DrawerFilters'
-import { FieldAutocompleteMultiple, FieldInput } from '@components/Field'
-import { StatusEnumLabel, TicketsStatusOptions } from '@features/tickets/data'
-import { TicketsPageFilters } from '@features/tickets/types'
-import { StatusEnum } from '~/api/servicepro.generated'
+import { FieldInput } from '@components/Field'
+import { VehiclesPageFilters } from '@features/vehicles/types'
 
-interface TicketDrawerFiltersProps {
+interface VehicleDrawerFiltersProps {
   open: boolean
-  filters: TicketsPageFilters
+  filters: VehiclesPageFilters
   onClose: () => void
-  onChange: (filters: Partial<TicketsPageFilters>) => void
+  onChange: (filters: Partial<VehiclesPageFilters>) => void
 }
 
-export const TicketDrawerFilters = ({ open, filters, onClose, onChange }: TicketDrawerFiltersProps) => {
-  const handleChange = (value: Partial<TicketsPageFilters>) => {
+export const VehicleDrawerFilters = ({ open, filters, onClose, onChange }: VehicleDrawerFiltersProps) => {
+  const handleChange = (value: Partial<VehiclesPageFilters>) => {
     onChange(value)
   }
 
@@ -52,13 +50,6 @@ export const TicketDrawerFilters = ({ open, filters, onClose, onChange }: Ticket
         label={'Модель техники'}
         placeholder={'Введите модель техники'}
         onChange={(event) => handleChange({ model: event.target.value })}
-      />
-      <FieldAutocompleteMultiple
-        name={'status'}
-        label={'Статус заявки'}
-        value={filters.status.map((status) => ({ value: status, label: StatusEnumLabel[status] }))}
-        options={TicketsStatusOptions}
-        onChange={(data) => handleChange({ status: data.map(({ value }) => value as StatusEnum) })}
       />
     </DrawerFilters>
   )

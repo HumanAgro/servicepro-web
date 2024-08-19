@@ -26,7 +26,6 @@ export const TicketsTable = ({ page, count, isSuccess, data, sx, onPageChange, o
       sx={sx}
     >
       <Table
-        sx={{ minHeight: 200 }}
         size={'small'}
       >
         <TableHead>

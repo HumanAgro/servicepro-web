@@ -15,7 +15,6 @@ export const VehiclesTable = ({ data, isSuccess, sx }: VehiclesTableProps) => {
       sx={sx}
     >
       <Table
-        sx={{ minHeight: 200 }}
         size={'small'}
       >
         <TableHead>
