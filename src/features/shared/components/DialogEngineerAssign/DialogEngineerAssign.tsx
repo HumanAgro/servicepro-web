@@ -7,7 +7,7 @@ import { QueryKey } from '@features/shared/data'
 import { getEmployeeRating } from '@features/shared/helpers'
 import { useEmployment } from '@features/shared/hooks/useEmployment'
 import { useEngineersList } from '@features/shared/hooks/useEngineersList'
-import { useQueryEngineers } from '@features/shared/hooks/useQueryEngineers'
+import { useEngineersTasksList } from '@features/shared/hooks/useEngineersTasksList'
 import { useApi } from '@hooks/useApi'
 import { useNotify } from '@hooks/useNotify'
 import { useOrganizationID } from '@hooks/useOrganizationID'
@@ -28,7 +28,7 @@ export const DialogEngineerAssign = ({ open, selectedTaskID, onClose }: DialogEn
   const { data: engineers } = useEngineersList()
   const { notify } = useNotify()
 
-  const { data, isLoading } = useQueryEngineers()
+  const { data, isLoading } = useEngineersTasksList()
   const [value, setValue] = useState<FieldAutocompleteCommonValue | null>(null)
   const options = useMemo((): FieldAutocompleteCommonValue[] => engineers.map((engineer) => ({
     label: `${getEmployeeLabel(engineer.profile, false)} (${getEmployeeRating(engineer.rating?.value) || EMPTY_VALUE_DASH})`,

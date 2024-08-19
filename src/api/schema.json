@@ -851,6 +851,82 @@
                 }
             }
         },
+        "/api/v1/etc/regions/": {
+            "get": {
+                "operationId": "etc_regions_list",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "Number of results to return per page.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "o",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "-created_at",
+                                    "-name",
+                                    "-updated_at",
+                                    "created_at",
+                                    "name",
+                                    "updated_at"
+                                ]
+                            }
+                        },
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
+                        "explode": false,
+                        "style": "form"
+                    },
+                    {
+                        "name": "offset",
+                        "required": false,
+                        "in": "query",
+                        "description": "The initial index from which to return the results.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "tags": [
+                    "etc"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "cookieAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaginatedRegionList"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/api/v1/export/sers/{org_id}/reports/": {
             "get": {
                 "operationId": "export_sers_reports_list",
@@ -1248,12 +1324,68 @@
                 "operationId": "org_orgs_list",
                 "parameters": [
                     {
+                        "in": "query",
+                        "name": "address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "contact_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "full_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "inn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "is_active",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
                         "description": "Number of results to return per page.",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -1265,13 +1397,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -1604,6 +1738,13 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "is_active",
                         "schema": {
                             "type": "boolean"
@@ -1627,6 +1768,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -1634,13 +1782,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -1664,31 +1814,36 @@
                     },
                     {
                         "in": "query",
-                        "name": "profile",
+                        "name": "phone_number",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     },
                     {
                         "in": "query",
-                        "name": "role",
+                        "name": "position",
                         "schema": {
-                            "type": "string",
-                            "enum": [
-                                "client",
-                                "coordinator",
-                                "engineer",
-                                "server"
-                            ]
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "client",
+                                    "coordinator",
+                                    "engineer",
+                                    "server"
+                                ]
+                            }
                         },
-                        "description": "* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator"
-                    },
-                    {
-                        "in": "query",
-                        "name": "user",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "Multiple values may be separated by commas.\n\n* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator",
+                        "explode": false,
+                        "style": "form"
                     }
                 ],
                 "tags": [
@@ -2311,12 +2466,68 @@
                 "operationId": "org_orgs_related_sers_list",
                 "parameters": [
                     {
+                        "in": "query",
+                        "name": "address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "contact_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "full_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "inn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "is_active",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
                         "description": "Number of results to return per page.",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -2328,13 +2539,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -2436,6 +2649,13 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "is_active",
                         "schema": {
                             "type": "boolean"
@@ -2459,6 +2679,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -2466,13 +2693,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -2496,9 +2725,16 @@
                     },
                     {
                         "in": "query",
-                        "name": "profile",
+                        "name": "phone_number",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "position",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -2512,24 +2748,22 @@
                     },
                     {
                         "in": "query",
-                        "name": "role",
+                        "name": "status",
                         "schema": {
-                            "type": "string",
-                            "enum": [
-                                "client",
-                                "coordinator",
-                                "engineer",
-                                "server"
-                            ]
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "client",
+                                    "coordinator",
+                                    "engineer",
+                                    "server"
+                                ]
+                            }
                         },
-                        "description": "* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator"
-                    },
-                    {
-                        "in": "query",
-                        "name": "user",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "Multiple values may be separated by commas.\n\n* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator",
+                        "explode": false,
+                        "style": "form"
                     }
                 ],
                 "tags": [
@@ -3175,12 +3409,68 @@
                 "operationId": "org_sers_related_orgs_list",
                 "parameters": [
                     {
+                        "in": "query",
+                        "name": "address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "contact_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "full_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "inn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "is_active",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
                         "description": "Number of results to return per page.",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -3192,13 +3482,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -3300,6 +3592,13 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "is_active",
                         "schema": {
                             "type": "boolean"
@@ -3323,6 +3622,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -3330,13 +3636,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -3360,9 +3668,16 @@
                     },
                     {
                         "in": "query",
-                        "name": "profile",
+                        "name": "phone_number",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "position",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -3376,24 +3691,22 @@
                     },
                     {
                         "in": "query",
-                        "name": "role",
+                        "name": "status",
                         "schema": {
-                            "type": "string",
-                            "enum": [
-                                "client",
-                                "coordinator",
-                                "engineer",
-                                "server"
-                            ]
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "client",
+                                    "coordinator",
+                                    "engineer",
+                                    "server"
+                                ]
+                            }
                         },
-                        "description": "* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator"
-                    },
-                    {
-                        "in": "query",
-                        "name": "user",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "Multiple values may be separated by commas.\n\n* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator",
+                        "explode": false,
+                        "style": "form"
                     }
                 ],
                 "tags": [
@@ -8296,12 +8609,68 @@
                 "operationId": "work_orgs_sers_list",
                 "parameters": [
                     {
+                        "in": "query",
+                        "name": "address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "contact_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "full_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "inn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "is_active",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
                         "description": "Number of results to return per page.",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -8313,13 +8682,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -10862,6 +11233,13 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "is_active",
                         "schema": {
                             "type": "boolean"
@@ -10885,6 +11263,13 @@
                     },
                     {
                         "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "o",
                         "schema": {
                             "type": "array",
@@ -10892,13 +11277,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -10922,31 +11309,36 @@
                     },
                     {
                         "in": "query",
-                        "name": "profile",
+                        "name": "phone_number",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     },
                     {
                         "in": "query",
-                        "name": "role",
+                        "name": "position",
                         "schema": {
-                            "type": "string",
-                            "enum": [
-                                "client",
-                                "coordinator",
-                                "engineer",
-                                "server"
-                            ]
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "client",
+                                    "coordinator",
+                                    "engineer",
+                                    "server"
+                                ]
+                            }
                         },
-                        "description": "* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator"
-                    },
-                    {
-                        "in": "query",
-                        "name": "user",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "Multiple values may be separated by commas.\n\n* `server` - server\n* `client` - client\n* `engineer` - engineer\n* `coordinator` - coordinator",
+                        "explode": false,
+                        "style": "form"
                     }
                 ],
                 "tags": [
@@ -11160,12 +11552,68 @@
                 "operationId": "work_sers_orgs_list",
                 "parameters": [
                     {
+                        "in": "query",
+                        "name": "address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_district",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address_region",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "contact_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "full_name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "inn",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "is_active",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
                         "description": "Number of results to return per page.",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -11177,13 +11625,15 @@
                                 "type": "string",
                                 "enum": [
                                     "-created_at",
+                                    "-name",
                                     "-updated_at",
                                     "created_at",
+                                    "name",
                                     "updated_at"
                                 ]
                             }
                         },
-                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)",
+                        "description": "Ordering\n\n* `created_at` - Created at\n* `-created_at` - Created at (descending)\n* `updated_at` - Updated at\n* `-updated_at` - Updated at (descending)\n* `name` - Name\n* `-name` - Name (descending)",
                         "explode": false,
                         "style": "form"
                     },
@@ -16602,6 +17052,12 @@
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/OrganizationPublic"
+                }
+            },
+            "PaginatedRegionList": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Region"
                 }
             },
             "PaginatedReportList": {

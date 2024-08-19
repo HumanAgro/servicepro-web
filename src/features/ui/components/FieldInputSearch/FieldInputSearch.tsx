@@ -10,7 +10,7 @@ export const FieldInputSearch = ({ value, placeholder, onChange }: FieldInputSea
       value={value}
       name={'search'}
       placeholder={placeholder ?? 'Поиск'}
-      sx={{ width: '260px' }}
+      sx={{ width: '300px' }}
       autoComplete={'off'}
       InputProps={{
         startAdornment: (

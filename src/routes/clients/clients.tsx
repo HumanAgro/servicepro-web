@@ -1,30 +1,38 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import useInfiniteScroll from 'react-infinite-scroll-hook'
+import { FieldInputSearch } from '@components/FieldInputSearch'
+import { InformerNoResults } from '@components/InformerNoResults'
 import { TableHeader } from '@components/TableHeader'
 import { TableWrapper } from '@components/TableWrapper/TableWrapper'
-import { PAGINATION_DEFAULT_LIMIT } from '@constants/index'
+import { DEBOUNCE_DELAY_DEFAULT, PAGINATION_DEFAULT_LIMIT } from '@constants/index'
 import { ClientRow } from '@features/clients/components/ClientRow'
 import { QueryKey } from '@features/shared/data'
 import { useApi } from '@hooks/useApi'
 import { useOrganizationID } from '@hooks/useOrganizationID'
-import { Box, CircularProgress, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import { Box, Button, CircularProgress, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { useDebounce } from '@uidotdev/usehooks'
 
 export const ClientsRoute = () => {
   const { organizationID } = useOrganizationID()
   const { api } = useApi()
 
+  const [query, setQuery] = useState('')
+  const queryDebounced = useDebounce(query, DEBOUNCE_DELAY_DEFAULT)
+
   const { data, hasNextPage, isFetchingNextPage, isFetching, fetchNextPage, status } = useInfiniteQuery({
-    queryKey: [QueryKey.Clients, organizationID],
+    queryKey: [QueryKey.Clients, organizationID, queryDebounced],
     queryFn: async ({ pageParam }) => {
       const { data } = await api.workSersOrgsList({
         orgId: organizationID.toString(),
         limit: PAGINATION_DEFAULT_LIMIT,
         offset: pageParam * PAGINATION_DEFAULT_LIMIT,
+        name: queryDebounced,
       })
 
       return data ?? []
     },
+    initialDataUpdatedAt: 0,
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => lastPage.length === 0 ? null : allPages.length,
     refetchOnWindowFocus: false,
@@ -40,19 +48,38 @@ export const ClientsRoute = () => {
     <>
       <TableHeader
         sx={{ marginTop: '8px' }}
+        renderSearch={(
+          <FieldInputSearch
+            value={query}
+            placeholder={'Поиск по клиенту'}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        )}
       >
         Клиенты
       </TableHeader>
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      {!isFetching && !hasNextPage && data?.pages?.length === 1 && data.pages[0].length === 0 && (
+        <InformerNoResults
+          title={'Клиенты не найдены'}
+          subtitle={'Возможно они еще не были добавлены'}
+          filtered={!!queryDebounced}
+          actions={(
+            <Button
+              variant={'outlined'}
+              color={'info'}
+              onClick={() => setQuery('')}
+            >
+              Очистить всё
+            </Button>
+          )}
+          sx={{
+            marginTop: '20px',
+          }}
+        />
+      )}
+      {(isFetching || isFetchingNextPage || data?.pages?.[0]?.length !== 0) && (
         <TableWrapper>
           <Table
-            sx={{ minHeight: 200 }}
             size={'small'}
           >
             <TableHead>
@@ -120,37 +147,10 @@ export const ClientsRoute = () => {
                   </TableCell>
                 </TableRow>
               )}
-              {/*{!isFetching && !isFetchingNextPage && !hasNextPage && (*/}
-              {/*  <TableRow>*/}
-              {/*    <TableCell*/}
-              {/*      colSpan={7}*/}
-              {/*    >*/}
-              {/*      <Box*/}
-              {/*        sx={{*/}
-              {/*          display: 'flex',*/}
-              {/*          justifyContent: 'center',*/}
-              {/*          alignItems: 'center',*/}
-              {/*          gap: '6px',*/}
-              {/*          padding: '4px 0',*/}
-              {/*        }}*/}
-              {/*      >*/}
-              {/*        <CheckCircle*/}
-              {/*          color={'success'}*/}
-              {/*          fontSize={'small'}*/}
-              {/*        />*/}
-              {/*        <Typography*/}
-              {/*          variant={'body2'}*/}
-              {/*        >*/}
-              {/*          Все клиенты загружены*/}
-              {/*        </Typography>*/}
-              {/*      </Box>*/}
-              {/*    </TableCell>*/}
-              {/*  </TableRow>*/}
-              {/*)}*/}
             </TableBody>
           </Table>
         </TableWrapper>
-      </Box>
+      )}
     </>
   )
 }

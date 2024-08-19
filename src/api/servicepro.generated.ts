@@ -785,6 +785,8 @@ export type PaginatedOrganizationList = Organization[];
 
 export type PaginatedOrganizationPublicList = OrganizationPublic[];
 
+export type PaginatedRegionList = Region[];
+
 export type PaginatedReportList = Report[];
 
 export type PaginatedSerVehicleList = SerVehicle[];
@@ -2802,6 +2804,27 @@ export type AccountMeDeleteAccountCreateData = UserDeleteAccount;
 
 export type AccountMeDeleteAccountConfirmCreateData = UserDeleteAccountConfirm;
 
+export interface EtcRegionsListParams {
+  /** Number of results to return per page. */
+  limit?: number;
+  name?: string;
+  /**
+   * Ordering
+   *
+   * * `created_at` - Created at
+   * * `-created_at` - Created at (descending)
+   * * `updated_at` - Updated at
+   * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
+   */
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+
+export type EtcRegionsListData = PaginatedRegionList;
+
 export interface ExportSersReportsListParams {
   /** Number of results to return per page. */
   limit?: number;
@@ -2840,8 +2863,16 @@ export type OrgNotificationListData = PaginatedNotificationList;
 export type OrgNotificationRetrieveData = Notification;
 
 export interface OrgOrgsListParams {
+  address?: string;
+  address_district?: string;
+  address_region?: string;
+  contact_name?: string;
+  full_name?: string;
+  inn?: string;
+  is_active?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -2849,8 +2880,10 @@ export interface OrgOrgsListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
 }
@@ -2886,10 +2919,12 @@ export type OrgOrgsInvitesInnCreateData = OrganizationInn;
 export type OrgOrgsContactPartialUpdateData = Profile;
 
 export interface OrgOrgsEmployeesListParams {
+  email?: string;
   is_active?: boolean;
   is_owner?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -2897,19 +2932,23 @@ export interface OrgOrgsEmployeesListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
-  profile?: number;
+  phone_number?: string;
+  position?: string;
   /**
+   * Multiple values may be separated by commas.
+   *
    * * `server` - server
    * * `client` - client
    * * `engineer` - engineer
    * * `coordinator` - coordinator
    */
-  role?: "client" | "coordinator" | "engineer" | "server";
-  user?: number;
+  status?: ("client" | "coordinator" | "engineer" | "server")[];
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -2958,8 +2997,16 @@ export type OrgOrgsPointsPartialUpdateData = ControlPoint;
 export type OrgOrgsPointsDestroyData = any;
 
 export interface OrgOrgsRelatedSersListParams {
+  address?: string;
+  address_district?: string;
+  address_region?: string;
+  contact_name?: string;
+  full_name?: string;
+  inn?: string;
+  is_active?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -2967,8 +3014,10 @@ export interface OrgOrgsRelatedSersListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** @pattern ^\d+$ */
@@ -2980,10 +3029,12 @@ export type OrgOrgsRelatedSersListData = PaginatedOrganizationPublicList;
 export type OrgOrgsRelatedSersRetrieveData = OrganizationPublic;
 
 export interface OrgOrgsRelatedSersEmployeesListParams {
+  email?: string;
   is_active?: boolean;
   is_owner?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -2991,19 +3042,23 @@ export interface OrgOrgsRelatedSersEmployeesListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
-  profile?: number;
+  phone_number?: string;
+  position?: string;
   /**
+   * Multiple values may be separated by commas.
+   *
    * * `server` - server
    * * `client` - client
    * * `engineer` - engineer
    * * `coordinator` - coordinator
    */
-  role?: "client" | "coordinator" | "engineer" | "server";
-  user?: number;
+  status?: ("client" | "coordinator" | "engineer" | "server")[];
   /** @pattern ^\d+$ */
   orgId: string;
   /** @pattern ^\d+$ */
@@ -3053,8 +3108,16 @@ export type OrgOrgsRetrieveData = OrganizationDetailed;
 export type OrgOrgsPartialUpdateData = OrganizationDetailed;
 
 export interface OrgSersRelatedOrgsListParams {
+  address?: string;
+  address_district?: string;
+  address_region?: string;
+  contact_name?: string;
+  full_name?: string;
+  inn?: string;
+  is_active?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -3062,8 +3125,10 @@ export interface OrgSersRelatedOrgsListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** @pattern ^\d+$ */
@@ -3075,10 +3140,12 @@ export type OrgSersRelatedOrgsListData = PaginatedOrganizationPublicList;
 export type OrgSersRelatedOrgsRetrieveData = OrganizationPublic;
 
 export interface OrgSersRelatedOrgsEmployeesListParams {
+  email?: string;
   is_active?: boolean;
   is_owner?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -3086,19 +3153,23 @@ export interface OrgSersRelatedOrgsEmployeesListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
-  profile?: number;
+  phone_number?: string;
+  position?: string;
   /**
+   * Multiple values may be separated by commas.
+   *
    * * `server` - server
    * * `client` - client
    * * `engineer` - engineer
    * * `coordinator` - coordinator
    */
-  role?: "client" | "coordinator" | "engineer" | "server";
-  user?: number;
+  status?: ("client" | "coordinator" | "engineer" | "server")[];
   /** @pattern ^\d+$ */
   orgId: string;
   /** @pattern ^\d+$ */
@@ -3808,8 +3879,16 @@ export type WorkOrgsMyGeoListData = PaginatedWorkEmployeeGeolocationList;
 export type WorkOrgsMyGeoCreateData = WorkEmployeeGeolocation;
 
 export interface WorkOrgsSersListParams {
+  address?: string;
+  address_district?: string;
+  address_region?: string;
+  contact_name?: string;
+  full_name?: string;
+  inn?: string;
+  is_active?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -3817,8 +3896,10 @@ export interface WorkOrgsSersListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** @pattern ^\d+$ */
@@ -4296,10 +4377,12 @@ export type WorkOrgsTasksGeosListData = PaginatedWorkTaskGeoList;
 export type WorkSersChatTokensCreateData = ChatToken;
 
 export interface WorkSersEmployeesListParams {
+  email?: string;
   is_active?: boolean;
   is_owner?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -4307,19 +4390,23 @@ export interface WorkSersEmployeesListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
-  profile?: number;
+  phone_number?: string;
+  position?: string;
   /**
+   * Multiple values may be separated by commas.
+   *
    * * `server` - server
    * * `client` - client
    * * `engineer` - engineer
    * * `coordinator` - coordinator
    */
-  role?: "client" | "coordinator" | "engineer" | "server";
-  user?: number;
+  status?: ("client" | "coordinator" | "engineer" | "server")[];
   /** @pattern ^\d+$ */
   orgId: string;
 }
@@ -4351,8 +4438,16 @@ export type WorkSersMyGeoListData = PaginatedWorkEmployeeGeolocationList;
 export type WorkSersMyGeoCreateData = WorkEmployeeGeolocation;
 
 export interface WorkSersOrgsListParams {
+  address?: string;
+  address_district?: string;
+  address_region?: string;
+  contact_name?: string;
+  full_name?: string;
+  inn?: string;
+  is_active?: boolean;
   /** Number of results to return per page. */
   limit?: number;
+  name?: string;
   /**
    * Ordering
    *
@@ -4360,8 +4455,10 @@ export interface WorkSersOrgsListParams {
    * * `-created_at` - Created at (descending)
    * * `updated_at` - Updated at
    * * `-updated_at` - Updated at (descending)
+   * * `name` - Name
+   * * `-name` - Name (descending)
    */
-  o?: ("-created_at" | "-updated_at" | "created_at" | "updated_at")[];
+  o?: ("-created_at" | "-name" | "-updated_at" | "created_at" | "name" | "updated_at")[];
   /** The initial index from which to return the results. */
   offset?: number;
   /** @pattern ^\d+$ */
@@ -5545,6 +5642,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         body: data,
         secure: true,
         type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags etc
+     * @name EtcRegionsList
+     * @request GET:/api/v1/etc/regions/
+     * @secure
+     */
+    etcRegionsList: (query: EtcRegionsListParams, params: RequestParams = {}) =>
+      this.request<EtcRegionsListData, any>({
+        path: `/api/v1/etc/regions/`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 

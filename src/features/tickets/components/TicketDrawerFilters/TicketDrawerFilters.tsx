@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react'
 import { DrawerContent } from '@components/DrawerContent'
 import { FieldAutocompleteMultiple, FieldInput } from '@components/Field'
 import { StatusEnumLabel, TicketsStatusOptions } from '@features/tickets/data'
 import { TicketsPageFilters } from '@features/tickets/types'
 import { Box, Button, Drawer } from '@mui/material'
-import { clone } from 'ramda'
 import { StatusEnum } from '~/api/servicepro.generated'
 
 interface TicketDrawerFiltersProps {
@@ -14,17 +12,8 @@ interface TicketDrawerFiltersProps {
   onChange: (filters: Partial<TicketsPageFilters>) => void
 }
 
-export const TicketDrawerFilters = ({ open, filters: filtersProp, onClose, onChange }: TicketDrawerFiltersProps) => {
-  const [filters, setFilters] = useState(clone(filtersProp))
-
-  useEffect(() => {
-    if (open) {
-      setFilters(clone(filtersProp))
-    }
-  }, [open])
-
+export const TicketDrawerFilters = ({ open, filters, onClose, onChange }: TicketDrawerFiltersProps) => {
   const handleChange = (value: Partial<TicketsPageFilters>) => {
-    setFilters((prev) => ({ ...prev, ...value }))
     onChange(value)
   }
 
