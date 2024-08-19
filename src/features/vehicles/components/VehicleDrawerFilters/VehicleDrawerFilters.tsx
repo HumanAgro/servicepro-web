@@ -1,6 +1,7 @@
 import { DrawerFilters } from '@components/DrawerFilters'
 import { FieldInput } from '@components/Field'
 import { FieldAutocompleteBrand } from '@features/shared/components/FieldAutocompleteBrand'
+import { FieldAutocompleteEquipment } from '@features/shared/components/FieldAutocompleteEquipment'
 import { FieldAutocompleteModel } from '@features/shared/components/FieldAutocompleteModel'
 import { FieldAutocompleteRegion } from '@features/shared/components/FieldAutocompleteRegion'
 import { VehiclesPageFilters } from '@features/vehicles/types'
@@ -45,6 +46,10 @@ export const VehicleDrawerFilters = ({ open, filters, onClose, onChange }: Vehic
         value={filters.model}
         brand={filters.brand}
         onChange={(model) => handleChange({ model })}
+      />
+      <FieldAutocompleteEquipment
+        value={filters.equipment}
+        onChange={(equipment) => handleChange({ equipment })}
       />
     </DrawerFilters>
   )

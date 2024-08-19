@@ -44,6 +44,7 @@ export const VehiclesRoute = () => {
         organization_address_district: filtersDebounced.district,
         brand_name: filtersDebounced.brand,
         model_name: filtersDebounced.model,
+        equipment_name: filtersDebounced.equipment,
       })
 
       return data
@@ -94,6 +95,11 @@ export const VehiclesRoute = () => {
             value: filters.model,
             label: TicketsPageFiltersLabels['model'],
             onDelete: () => changeFilters({ model: '' }),
+          },
+          {
+            value: filters.equipment,
+            label: TicketsPageFiltersLabels['equipment'],
+            onDelete: () => changeFilters({ equipment: '' }),
           },
         ]}
         onClear={() => changeFilters(getTicketsPageFiltersDefault())}

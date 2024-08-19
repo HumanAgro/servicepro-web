@@ -4,4 +4,5 @@ export type VehiclesPageFilters = {
   district: string
   brand: string
   model: string
+  equipment: string
 }

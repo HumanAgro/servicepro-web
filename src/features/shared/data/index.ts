@@ -18,6 +18,7 @@ export enum QueryKey {
   TicketResult = 'ticket-result',
   TicketReviews = 'ticket-review',
   TicketStatuses = 'ticket-statuses',
+  Types = 'types',
   Vehicles = 'vehicles',
   Vehicle = 'vehicle',
   VehicleDocuments = 'vehicle-documents',

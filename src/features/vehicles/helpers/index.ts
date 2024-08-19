@@ -6,4 +6,5 @@ export const getVehiclesPageFiltersDefault = (): VehiclesPageFilters => ({
   district: '',
   brand: '',
   model: '',
+  equipment: '',
 })

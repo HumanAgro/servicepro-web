@@ -24,8 +24,8 @@ export const FieldAutocompleteBrand = ({ value, onChange }: FieldAutocompleteBra
   return (
     <FieldAutocomplete
       name={'region'}
-      label={'Бренд'}
-      placeholder={'Выберите бренд'}
+      label={'Бренд техники'}
+      placeholder={'Выберите бренд техники'}
       value={fieldValue}
       options={options}
       isLoading={isFetching}
