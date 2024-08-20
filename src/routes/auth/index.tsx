@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logoVertical from '@assets/logo-vertical.png'
 import { FieldInputControlled } from '@components/Field'
 import { theme } from '@data/theme'
@@ -20,8 +20,8 @@ export interface AuthFormData {
 
 export const AuthRoute = () => {
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
+  // const location = useLocation() TODO
+  // const from = location.state?.from?.pathname || '/' TODO
   const { notify } = useNotify()
   const { auth, setAuth, persist, setPersist } = useAuth()
   const [passwordVisible, setPasswordVisible] = useState(false)
@@ -44,7 +44,9 @@ export const AuthRoute = () => {
         })
 
         localStorage.setItem('persist', JSON.stringify(persist))
-        navigate(from, { replace: true })
+        // TODO
+        // navigate(from, { replace: true })
+        navigate('/', { replace: true })
       } catch (error) {
         notify({
           message: 'Неверные логин или пароль',
