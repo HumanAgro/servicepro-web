@@ -103,7 +103,7 @@ export const OrganizationRoute = () => {
                   sx={{
                     padding: '12px 28px',
                   }}
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate(`/${employment.organization.id}/tickets`)}
                 >
                   <ListItemAvatar
                     sx={{

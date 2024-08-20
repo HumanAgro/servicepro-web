@@ -11,6 +11,7 @@ import { ClientRoute } from '@routes/clients/client'
 import { ClientsRoute } from '@routes/clients/clients'
 import { EngineersRoute } from '@routes/engineers/engineers'
 import { OrganizationRoute } from '@routes/organization'
+import { OrganizationGuard } from '@routes/organization/guard'
 import { ProfileRoute } from '@routes/profile/profile'
 import { ReportsRoute } from '@routes/reports/reports'
 import { TicketsRoute } from '@routes/tickets/tickets'
@@ -53,6 +54,7 @@ export const router = createBrowserRouter(getConfiguredRoutes([
   },
   {
     path: '/:organizationID',
+    element: <OrganizationGuard />,
     children: [
       {
         element: <LayoutMain />,
