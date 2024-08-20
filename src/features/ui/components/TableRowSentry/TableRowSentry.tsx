@@ -19,7 +19,7 @@ export const TableRowSentry = forwardRef(({ colspan }: TableRowSentryProps, ref:
         >
           <CircularProgress
             color={'info'}
-            size={36}
+            size={24}
           />
         </Box>
       </TableCell>
